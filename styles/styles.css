@@ -154,13 +154,13 @@
   --background-color: var(--color-neutral-50);
   --nav-height: 70px;
   --site-width: 1360px;
-  --frescopa-color-background: #F4E9DC;
-  --frescopa-color-brand: #A33532;
-  --frescopa-color-primary: #00647D;
-  --frescopa-color-secondary: #DC6E52;
+  --frescopa-color-background: #F5EDE8;
+  --frescopa-color-brand: #C8102E;
+  --frescopa-color-primary: #005F87;
+  --frescopa-color-secondary: #8B1A2C;
   --frescopa-color-tertiary: #EBA439;
-  --frescopa-color-text: #58181D;
-  --frescopa-color-black: #2C2C2C;
+  --frescopa-color-text: #333333;
+  --frescopa-color-black: #1A1A1A;
 }
 
 /* fallback fonts */
@@ -197,7 +197,7 @@ html {
 body {
   font: normal normal normal 18px/24px Roboto, sans-serif;
   margin: 0;
-  color: #58181D;
+  color: #333333;
   background-color:#fff;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -246,28 +246,28 @@ h6 {
 }
 
 h1 {
-  font: normal normal normal 56px/56px Baskerville, serif;
+  font: normal normal bold 56px/56px Arial, sans-serif;
   letter-spacing: var(--type-display-1-letter-spacing);
 }
 
 h2 {
-  font: normal normal normal 48px/52px Baskerville, serif;
+  font: normal normal bold 48px/52px Arial, sans-serif;
   letter-spacing: var(--type-display-2-letter-spacing);
 }
 
 h3 {
-  font: normal normal normal 36px/42px Baskerville, serif;
+  font: normal normal bold 36px/42px Arial, sans-serif;
   letter-spacing: var(--type-display-3-letter-spacing);
 }
 
 h4 {
-  font: normal normal normal 32px/32px Baskerville, serif;
+  font: normal normal bold 32px/32px Arial, sans-serif;
   letter-spacing: 0;
   margin-bottom: 10px;
 }
 
 h5 {
-  font: normal normal normal 24px/30px Baskerville, serif;
+  font: normal normal bold 24px/30px Arial, sans-serif;
   letter-spacing: 0
 }
 
@@ -366,7 +366,7 @@ button.button {
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: #00647D;
+  background-color: #C8102E;
   color: var(--color-neutral-50);
   cursor: pointer;
   overflow: hidden;
@@ -378,7 +378,7 @@ main a.button:hover,
 main a.button:focus,
 button.button:hover,
 button.button:focus {
-  background-color: #00647D;
+  background-color: #C8102E;
   cursor: pointer;
 }
 
@@ -391,8 +391,8 @@ button.button:disabled:hover {
 
 main a.button.secondary,
 button.button.secondary {
-  background-color: #95351D;
-  border: #95351D solid;
+  background-color: #8B1A2C;
+  border: #8B1A2C solid;
   color: #fff;
 }
 

@@ -1,4 +1,4 @@
-# Frescopa Site Project
+# adrianEDS.project
 Based on the boilerplate for AEM Authoring with Edge Delivery Services projects that integrate with Adobe Commerce.
 
 ## Environments
