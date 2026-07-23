@@ -2,7 +2,7 @@
 
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background-color: #F5EDE8;
   width: 100%;
   z-index: 3;
   position: fixed;
@@ -21,7 +21,7 @@ header nav {
   max-width: 1360px;
   height: var(--nav-height);
   padding: 0 var(--spacing-medium);
-  font-family: var(--type-base-font-family);
+  font-family: Arial, sans-serif;
 }
 
 header nav[aria-expanded='true'] {
@@ -178,6 +178,13 @@ header nav .nav-sections ul > li,
 header nav .nav-sections ul > li > a {
     font-weight: 500;
     font-size: 15px;
+    color: #333333;
+    text-decoration: none;
+}
+
+header nav .nav-sections ul > li > a:hover {
+  color: #C8102E;
+  text-decoration: underline;
 }
 
 header nav .nav-sections ul > li > ul {
@@ -506,7 +513,7 @@ header .nav-search-input .search_autocomplete .popover-container {
 
 header .announcement-wrapper {
   display:none;
-  background-color: #A33532;
+  background-color: #8B1A2C;
   min-height: 30px;
 
   @media (width >= 900px) {

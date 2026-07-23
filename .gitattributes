@@ -1,0 +1,12 @@
+# Force LF line endings for all text files (fixes CRLF ESLint errors on Windows)
+* text=auto eol=lf
+
+# Explicitly declare binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
