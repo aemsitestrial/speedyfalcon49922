@@ -10,9 +10,18 @@ export default function decorate(block) {
     const li = document.createElement('li');
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
+
+    let cardLink = '';
     [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
+      const text = div.textContent.trim();
+      if (div.children.length === 1 && div.querySelector('picture')) {
+        div.className = 'cards-card-image';
+      } else if (!div.children.length && (text.startsWith('/') || text.startsWith('http'))) {
+        cardLink = text;
+        div.remove();
+      } else {
+        div.className = 'cards-card-body';
+      }
     });
 
     if (isTestimonial) {
@@ -26,6 +35,14 @@ export default function decorate(block) {
         const paragraphs = body.querySelectorAll('p');
         const lastP = paragraphs[paragraphs.length - 1];
         if (lastP) lastP.classList.add('cards-card-author');
+      }
+
+      if (cardLink) {
+        const overlay = document.createElement('a');
+        overlay.href = cardLink;
+        overlay.className = 'cards-card-overlay';
+        overlay.setAttribute('aria-label', 'Read more');
+        li.append(overlay);
       }
     }
 

@@ -110,6 +110,22 @@
   content: '— ';
 }
 
+.cards.testimonial .cards-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.cards.testimonial > ul > li:has(.cards-card-overlay) {
+  cursor: pointer;
+}
+
+.cards.testimonial > ul > li:has(.cards-card-overlay):hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(200 16 46 / 20%);
+}
+
 .numbered > .cards-wrapper {
   padding: 40px;
   box-sizing: border-box;

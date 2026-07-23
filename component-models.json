@@ -211,6 +211,13 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "link",
+        "label": "Link URL",
+        "valueType": "string",
+        "value": "/404"
       }
     ]
   },
