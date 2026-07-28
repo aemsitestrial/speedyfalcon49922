@@ -32,14 +32,14 @@
       }
     },
     {
-      "title": "Card",
+      "title": "Testimonial",
       "id": "card",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Card",
+              "name": "Testimonial",
               "model": "card"
             }
           }
