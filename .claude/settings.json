@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m ' *)",
+      "Bash(gh pr create --title 'adrianEDS.project — Xcel-inspired styles + Testimonial Cards block' --body ' *)",
+      "Bash(npx stylelint *)",
+      "Bash(git fetch *)",
+      "PowerShell(cd \"c:\\\\Users\\\\adrian.m.bartolome\\\\OneDrive - Accenture\\\\Xcel Project\\\\AEMsndboxGit\\\\speedyfalcon49922\"; $files = @\\('.eslintrc.js', 'blocks/article/article.js', 'blocks/cards/cards.js', 'styles/styles.css'\\); foreach \\($f in $files\\) { $c = git show HEAD:$f; $hasCR = $c | Where-Object { $_ -match \"`r\" }; \"$f`: \" + $\\(if \\($hasCR\\) { \"CRLF\" } else { \"LF\" }\\) })",
+      "PowerShell(cd \"c:\\\\Users\\\\adrian.m.bartolome\\\\OneDrive - Accenture\\\\Xcel Project\\\\AEMsndboxGit\\\\speedyfalcon49922\"; npm run lint:js 2>&1 | Where-Object { $_ -notmatch \"CRLF\" -and $_ -notmatch \"linebreak-style\" } | Where-Object { $_ -match \"error|warning\" } | Select-Object -First 20)"
+    ]
+  }
+}
