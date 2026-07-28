@@ -294,33 +294,58 @@ main > .section + .background .cards ul li img {
 .cards.testimonial > ul > li {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0 0 0 / 12%);
-  padding: 32px 24px 24px;
-  text-align: center;
+  box-shadow: 0 4px 20px rgba(0 0 0 / 15%);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin: 0;
+  position: relative;
 }
 
 .cards.testimonial > ul > li:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0 0 0 / 18%);
+  box-shadow: 0 8px 28px rgba(0 0 0 / 22%);
 }
 
 .cards.testimonial .cards-card-quote {
-  font-size: 64px;
+  font-size: 56px;
   line-height: 1;
-  color: #c8102e;
+  color: #20c9a5;
   font-family: Georgia, serif;
-  margin-bottom: 8px;
+  padding: 24px 24px 0;
 }
 
+.cards.testimonial .cards-card-body {
+  padding: 8px 24px 32px;
+  flex: 1;
+  margin: 0;
+}
+
+.cards.testimonial .cards-card-body p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Colored wave section at bottom */
+.cards.testimonial .cards-card-wave {
+  position: relative;
+  border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+  background: #20c9a5;
+  padding: 52px 16px 24px;
+  text-align: center;
+}
+
+/* Circular photo centered, overlapping the wave top edge */
 .cards.testimonial .cards-card-image {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
+  position: absolute;
+  top: -44px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88px;
+  height: 88px;
   line-height: 0;
 }
 
@@ -330,35 +355,34 @@ main > .section + .background .cards ul li img {
   border-radius: 50%;
   object-fit: cover;
   aspect-ratio: 1 / 1;
-  border: 3px solid #f5ede8;
+  border: 3px solid #fff;
 }
 
-.cards.testimonial .cards-card-body {
-  margin: 0;
-  text-align: center;
-}
-
-.cards.testimonial .cards-card-body p {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-.cards.testimonial .cards-card-body .cards-card-author {
+.cards.testimonial .cards-card-author {
   font-weight: 700;
-  color: #005f87;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 16px;
-  margin-bottom: 0;
+  color: #fff;
+  font-size: 15px;
+  margin: 0;
 }
 
-.cards.testimonial .cards-card-body .cards-card-author::before {
-  content: '— ';
-}
+/* Color variants — quote mark + wave background */
+.cards.testimonial > ul > li.color-teal .cards-card-quote { color: #20c9a5; }
 
+.cards.testimonial > ul > li.color-teal .cards-card-wave { background: #20c9a5; }
+
+.cards.testimonial > ul > li.color-purple .cards-card-quote { color: #9b59b6; }
+
+.cards.testimonial > ul > li.color-purple .cards-card-wave { background: #9b59b6; }
+
+.cards.testimonial > ul > li.color-blue .cards-card-quote { color: #3498db; }
+
+.cards.testimonial > ul > li.color-blue .cards-card-wave { background: #3498db; }
+
+.cards.testimonial > ul > li.color-red .cards-card-quote { color: #c8102e; }
+
+.cards.testimonial > ul > li.color-red .cards-card-wave { background: #c8102e; }
+
+/* Link overlay */
 .cards.testimonial .cards-card-overlay {
   position: absolute;
   inset: 0;
@@ -372,6 +396,6 @@ main > .section + .background .cards ul li img {
 
 .cards.testimonial > ul > li:has(.cards-card-overlay):hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(200 16 46 / 20%);
+  box-shadow: 0 12px 28px rgba(0 0 0 / 22%);
 }
 /* stylelint-enable no-descending-specificity */
