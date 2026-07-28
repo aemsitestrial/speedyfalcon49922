@@ -297,10 +297,8 @@ main > .section + .background .cards ul li img {
   box-shadow: 0 4px 20px rgba(0 0 0 / 15%);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin: 0;
-  position: relative;
 }
 
 .cards.testimonial > ul > li:hover {
@@ -332,10 +330,11 @@ main > .section + .background .cards ul li img {
 /* Colored wave section at bottom */
 .cards.testimonial .cards-card-wave {
   position: relative;
-  border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+  border-radius: 50% 50% 12px 12px / 30px 30px 12px 12px;
   background: #20c9a5;
   padding: 52px 16px 24px;
   text-align: center;
+  margin-top: auto;
 }
 
 /* Circular photo centered, overlapping the wave top edge */

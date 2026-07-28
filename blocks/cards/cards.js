@@ -1,15 +1,30 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+const TESTIMONIAL_COLORS = ['teal', 'purple', 'blue', 'red'];
+
 function decorateTestimonialCard(li) {
-  // Field order matches model: image, name, text, color, link
-  const [imageDiv, nameDiv, textDiv, colorDiv, linkDiv] = [...li.children];
+  const children = [...li.children];
+
+  // Detect fields by content type — robust against missing/empty fields
+  const imageDiv = children.find((d) => d.querySelector('picture'));
+  const colorDiv = children.find(
+    (d) => TESTIMONIAL_COLORS.includes(d.textContent.trim().toLowerCase()),
+  );
+  const linkDiv = children.find((d) => {
+    const t = d.textContent.trim();
+    return d !== colorDiv && !d.querySelector('picture') && !d.querySelector('p') && (t.startsWith('/') || t.startsWith('http'));
+  });
+  const textDiv = children.find((d) => d !== imageDiv && d !== colorDiv && d !== linkDiv && d.querySelector('p'));
+  const nameDiv = children.find(
+    (d) => d !== imageDiv && d !== colorDiv && d !== linkDiv && d !== textDiv,
+  );
 
   const colorValue = colorDiv ? colorDiv.textContent.trim().toLowerCase() : 'teal';
   const nameText = nameDiv ? nameDiv.textContent.trim() : '';
   const linkText = linkDiv ? linkDiv.textContent.trim() : '';
 
-  [imageDiv, nameDiv, textDiv, colorDiv, linkDiv].forEach((d) => d && d.remove());
+  children.forEach((d) => d.remove());
 
   if (colorValue) li.classList.add(`color-${colorValue}`);
 
@@ -26,7 +41,7 @@ function decorateTestimonialCard(li) {
   const wave = document.createElement('div');
   wave.className = 'cards-card-wave';
 
-  if (imageDiv) {
+  if (imageDiv && imageDiv.querySelector('picture')) {
     imageDiv.className = 'cards-card-image';
     wave.append(imageDiv);
   }
@@ -40,7 +55,7 @@ function decorateTestimonialCard(li) {
 
   li.append(wave);
 
-  if (linkText && !linkText.startsWith('#')) {
+  if (linkText && linkText !== '/') {
     const overlay = document.createElement('a');
     overlay.href = linkText;
     overlay.className = 'cards-card-overlay';

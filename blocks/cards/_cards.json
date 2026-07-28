@@ -63,12 +63,12 @@
           "name": "name",
           "label": "Name",
           "valueType": "string",
-          "value": ""
+          "value": "Author Name"
         },
         {
           "component": "richtext",
           "name": "text",
-          "value": "",
+          "value": "<p>Share your experience here. What did you love about it?</p>",
           "label": "Quote",
           "valueType": "string"
         },
