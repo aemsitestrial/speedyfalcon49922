@@ -25,27 +25,7 @@
             "template": {
               "name": "Cards",
               "classes": "testimonial",
-              "filter": "cards",
-              ":items": {
-                "card_0": {
-                  "name": "Card",
-                  "model": "card",
-                  "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. A wonderful experience!</p><p>Author Name</p>",
-                  "link": "/404"
-                },
-                "card_1": {
-                  "name": "Card",
-                  "model": "card",
-                  "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Highly recommended!</p><p>Author Name</p>",
-                  "link": "/404"
-                },
-                "card_2": {
-                  "name": "Card",
-                  "model": "card",
-                  "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Simply the best!</p><p>Author Name</p>",
-                  "link": "/404"
-                }
-              }
+              "filter": "cards"
             }
           }
         }
