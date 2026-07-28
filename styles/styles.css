@@ -159,7 +159,7 @@
   --frescopa-color-primary: #005F87;
   --frescopa-color-secondary: #8B1A2C;
   --frescopa-color-tertiary: #EBA439;
-  --frescopa-color-text: #333333;
+  --frescopa-color-text: #333;
   --frescopa-color-black: #1A1A1A;
 }
 
@@ -197,7 +197,7 @@ html {
 body {
   font: normal normal normal 18px/24px Roboto, sans-serif;
   margin: 0;
-  color: #333333;
+  color: #333;
   background-color:#fff;
   display: grid;
   grid-template-rows: auto 1fr auto;
