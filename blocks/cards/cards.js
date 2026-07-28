@@ -8,13 +8,17 @@ function decorateTestimonialCard(li) {
 
   // Detect fields by content type — robust against missing/empty fields
   const imageDiv = children.find((d) => d.querySelector('picture'));
-  const colorDiv = children.find((d) => TESTIMONIAL_COLORS.includes(d.textContent.trim().toLowerCase()));
+  const colorDiv = children.find(
+    (d) => TESTIMONIAL_COLORS.includes(d.textContent.trim().toLowerCase()),
+  );
   const linkDiv = children.find((d) => {
     const t = d.textContent.trim();
     return d !== colorDiv && !d.querySelector('picture') && !d.querySelector('p') && (t.startsWith('/') || t.startsWith('http'));
   });
   const textDiv = children.find((d) => d !== imageDiv && d !== colorDiv && d !== linkDiv && d.querySelector('p'));
-  const nameDiv = children.find((d) => d !== imageDiv && d !== colorDiv && d !== linkDiv && d !== textDiv);
+  const nameDiv = children.find(
+    (d) => d !== imageDiv && d !== colorDiv && d !== linkDiv && d !== textDiv,
+  );
 
   const colorValue = colorDiv ? colorDiv.textContent.trim().toLowerCase() : 'teal';
   const nameText = nameDiv ? nameDiv.textContent.trim() : '';
