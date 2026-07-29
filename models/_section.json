@@ -98,7 +98,8 @@
         "reward",
         "reward-sticky",
         "sticky-cta",
-        "quiz"
+        "quiz",
+        "state-selector"
       ]
     }
   ]
