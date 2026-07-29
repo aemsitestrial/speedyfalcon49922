@@ -47,18 +47,33 @@ function buildStateCard(name, link) {
   return a;
 }
 
+const DEFAULT_STATES = [
+  { name: 'Colorado', link: '/' },
+  { name: 'Michigan', link: '/' },
+  { name: 'Minnesota', link: '/' },
+  { name: 'New Mexico', link: '/' },
+  { name: 'North Dakota', link: '/' },
+  { name: 'South Dakota', link: '/' },
+  { name: 'Texas', link: '/' },
+  { name: 'Wisconsin', link: '/' },
+];
+
 export default function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
   const grid = document.createElement('ul');
   grid.className = 'state-selector-grid';
 
-  rows.forEach((row) => {
-    const cells = [...row.querySelectorAll(':scope > div')];
-    const name = cells[0]?.textContent?.trim() || '';
-    const link = cells[1]?.textContent?.trim() || '/';
+  const states = rows.length > 0
+    ? rows.map((row) => {
+      const cells = [...row.querySelectorAll(':scope > div')];
+      return {
+        name: cells[0]?.textContent?.trim() || '',
+        link: cells[1]?.textContent?.trim() || '/',
+      };
+    }).filter((s) => s.name)
+    : DEFAULT_STATES;
 
-    if (!name) return;
-
+  states.forEach(({ name, link }) => {
     const li = document.createElement('li');
     li.appendChild(buildStateCard(name, link));
     grid.appendChild(li);
