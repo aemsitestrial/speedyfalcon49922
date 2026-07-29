@@ -87,6 +87,12 @@
     ]
   },
   {
+    "id": "state-selector",
+    "components": [
+      "state-item"
+    ]
+  },
+  {
     "id": "video",
     "components": []
   }
