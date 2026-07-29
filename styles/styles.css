@@ -468,6 +468,12 @@ main .section.highlight {
   padding: var(--spacing-xbig) 0;
 }
 
+main .section.background {
+  background-color: #f5ede8;
+  margin: 0;
+  padding: var(--spacing-xbig) 0;
+}
+
 /* Base Design System Tokens */
 .dropin-design.dropin-design {
   --background-none: none 0 0% no-repeat padding-box;
