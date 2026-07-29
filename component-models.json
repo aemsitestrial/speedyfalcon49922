@@ -5625,6 +5625,25 @@
     ]
   },
   {
+    "id": "state-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "label": "State Name",
+        "valueType": "string",
+        "value": "Colorado"
+      },
+      {
+        "component": "text",
+        "name": "link",
+        "label": "Link URL",
+        "valueType": "string",
+        "value": "/"
+      }
+    ]
+  },
+  {
     "id": "sticky-cta",
     "fields": [
       {
