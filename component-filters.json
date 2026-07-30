@@ -36,7 +36,8 @@
       "sticky-cta",
       "quiz",
       "state-selector",
-      "xcel-text"
+      "xcel-text",
+      "xcel-button"
     ]
   },
   {
@@ -57,7 +58,9 @@
       "text",
       "image",
       "button",
-      "title"
+      "title",
+      "xcel-text",
+      "xcel-button"
     ]
   },
   {

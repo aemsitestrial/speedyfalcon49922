@@ -6042,6 +6042,50 @@
     ]
   },
   {
+    "id": "xcel-button",
+    "fields": [
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Button Style",
+        "valueType": "string",
+        "value": "standard",
+        "options": [
+          {
+            "name": "Standard (red fill)",
+            "value": "standard"
+          },
+          {
+            "name": "Card (white box)",
+            "value": "card"
+          },
+          {
+            "name": "Pill (rounded)",
+            "value": "pill"
+          },
+          {
+            "name": "Outline (red border)",
+            "value": "outline"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Button Label",
+        "valueType": "string",
+        "value": "Learn More"
+      },
+      {
+        "component": "text",
+        "name": "link",
+        "label": "Link URL",
+        "valueType": "string",
+        "value": "/"
+      }
+    ]
+  },
+  {
     "id": "xcel-text",
     "fields": [
       {

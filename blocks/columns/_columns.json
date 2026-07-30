@@ -50,7 +50,9 @@
         "text",
         "image",
         "button",
-        "title"
+        "title",
+        "xcel-text",
+        "xcel-button"
       ]
     }
   ]
