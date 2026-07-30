@@ -1,3 +1,8 @@
+const STATE_ORDER = [
+  'Colorado', 'Michigan', 'Minnesota', 'New Mexico',
+  'North Dakota', 'South Dakota', 'Texas', 'Wisconsin',
+];
+
 const STATE_SVGS = {
   colorado: `<svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
     <polygon points="5,5 95,5 95,65 5,65" fill="currentColor"/>
@@ -47,31 +52,18 @@ function buildStateCard(name, link) {
   return a;
 }
 
-const DEFAULT_STATES = [
-  { name: 'Colorado', link: '/' },
-  { name: 'Michigan', link: '/' },
-  { name: 'Minnesota', link: '/' },
-  { name: 'New Mexico', link: '/' },
-  { name: 'North Dakota', link: '/' },
-  { name: 'South Dakota', link: '/' },
-  { name: 'Texas', link: '/' },
-  { name: 'Wisconsin', link: '/' },
-];
-
 export default function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
   const grid = document.createElement('ul');
   grid.className = 'state-selector-grid';
 
-  const states = rows.length > 0
-    ? rows.map((row) => {
-      const cells = [...row.querySelectorAll(':scope > div')];
-      return {
-        name: cells[0]?.textContent?.trim() || '',
-        link: cells[1]?.textContent?.trim() || '/',
-      };
-    }).filter((s) => s.name)
-    : DEFAULT_STATES;
+  // Each row corresponds to one state in STATE_ORDER order.
+  // Read the last cell of the row to get the link value (handles 1-cell or 2-cell rows).
+  const states = STATE_ORDER.map((name, i) => {
+    const cells = [...(rows[i]?.querySelectorAll(':scope > div') || [])];
+    const link = cells.at(-1)?.textContent?.trim() || '/';
+    return { name, link };
+  });
 
   states.forEach(({ name, link }) => {
     const li = document.createElement('li');
