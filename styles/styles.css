@@ -481,11 +481,7 @@ main .section.maroon {
   color: #fff;
 }
 
-main .section.maroon h1,
-main .section.maroon h2,
-main .section.maroon h3,
-main .section.maroon h4,
-main .section.maroon p {
+main .section.maroon *:not(a.button) {
   color: #fff;
 }
 
