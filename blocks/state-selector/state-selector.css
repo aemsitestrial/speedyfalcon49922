@@ -26,11 +26,6 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  transition: transform 0.2s ease;
-}
-
-.state-selector-item:hover {
-  transform: translateY(-4px);
 }
 
 .state-selector-icon {
@@ -40,6 +35,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.state-selector-item:hover .state-selector-icon {
+  transform: scale(1.2);
+  color: #6b0016;
 }
 
 .state-selector-icon svg {
