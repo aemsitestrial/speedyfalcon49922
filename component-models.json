@@ -6052,20 +6052,20 @@
         "value": "standard",
         "options": [
           {
-            "name": "Standard (red fill)",
+            "name": "Standard",
             "value": "standard"
+          },
+          {
+            "name": "Pill",
+            "value": "pill"
+          },
+          {
+            "name": "Square",
+            "value": "square"
           },
           {
             "name": "Card (white box)",
             "value": "card"
-          },
-          {
-            "name": "Pill (rounded)",
-            "value": "pill"
-          },
-          {
-            "name": "Outline (red border)",
-            "value": "outline"
           }
         ]
       },
