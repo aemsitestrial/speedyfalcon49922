@@ -4,72 +4,33 @@
   padding: 0.5rem 0;
 }
 
-.xcel-btn {
-  display: inline-block;
-  text-decoration: none;
-  font-family: Arial, sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+/* Standard — inherits .button as-is, no shape change needed */
+
+/* Pill — fully rounded ends */
+.xcel-btn--pill {
+  border-radius: 999px;
 }
 
-/* Standard — red fill */
-.xcel-btn--standard {
-  background-color: #c8102e;
-  color: #fff;
-  padding: 0.6em 2em;
-  border: 2px solid #c8102e;
-  border-radius: 4px;
+/* Square — no border radius */
+.xcel-btn--square {
+  border-radius: 0;
 }
 
-.xcel-btn--standard:hover {
-  background-color: #a00d24;
-  border-color: #a00d24;
-}
-
-/* Card — large white box with shadow */
+/* Card — large white rectangle with shadow, overrides button colors */
 .xcel-btn--card {
   background-color: #fff;
   color: #555;
-  padding: 1.2em 3em;
-  border: none;
+  border-color: transparent;
   border-radius: 4px;
+  padding: 1.2em 3em;
   box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
   font-size: 1.05rem;
-  letter-spacing: 0.01em;
   min-width: 200px;
   text-align: center;
 }
 
 .xcel-btn--card:hover {
-  box-shadow: 0 4px 16px rgb(0 0 0 / 30%);
+  background-color: #fff;
   color: #333;
-}
-
-/* Pill — rounded red fill */
-.xcel-btn--pill {
-  background-color: #c8102e;
-  color: #fff;
-  padding: 0.6em 2.2em;
-  border: 2px solid #c8102e;
-  border-radius: 999px;
-}
-
-.xcel-btn--pill:hover {
-  background-color: #a00d24;
-  border-color: #a00d24;
-}
-
-/* Outline — transparent with red border */
-.xcel-btn--outline {
-  background-color: transparent;
-  color: #c8102e;
-  padding: 0.6em 2em;
-  border: 2px solid #c8102e;
-  border-radius: 4px;
-}
-
-.xcel-btn--outline:hover {
-  background-color: #c8102e;
-  color: #fff;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 30%);
 }
