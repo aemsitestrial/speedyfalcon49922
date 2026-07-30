@@ -38,6 +38,9 @@
           "...": "../blocks/state-selector/_*.json#/definitions"
         },
         {
+          "...": "../blocks/xcel-text/_*.json#/definitions"
+        },
+        {
           "...": "../blocks/columns/_*.json#/definitions"
         },
         {
