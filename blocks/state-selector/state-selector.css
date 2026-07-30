@@ -1,5 +1,13 @@
 .state-selector {
   padding: 2rem 1rem;
+  text-align: center;
+}
+
+.state-selector-heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 2rem;
 }
 
 .state-selector-grid {
