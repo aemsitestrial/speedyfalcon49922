@@ -6040,5 +6040,38 @@
         ]
       }
     ]
+  },
+  {
+    "id": "xcel-text",
+    "fields": [
+      {
+        "component": "select",
+        "name": "color",
+        "label": "Text Color",
+        "valueType": "string",
+        "value": "black",
+        "options": [
+          {
+            "name": "Black (default)",
+            "value": "black"
+          },
+          {
+            "name": "White",
+            "value": "white"
+          },
+          {
+            "name": "Teal",
+            "value": "teal"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Content",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
   }
 ]

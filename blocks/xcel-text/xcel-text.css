@@ -1,0 +1,39 @@
+.xcel-text {
+  padding: 0;
+}
+
+.xcel-text-content h1,
+.xcel-text-content h2,
+.xcel-text-content h3,
+.xcel-text-content h4,
+.xcel-text-content p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.xcel-text--white .xcel-text-content,
+.xcel-text--white .xcel-text-content h1,
+.xcel-text--white .xcel-text-content h2,
+.xcel-text--white .xcel-text-content h3,
+.xcel-text--white .xcel-text-content h4,
+.xcel-text--white .xcel-text-content p {
+  color: #fff;
+}
+
+.xcel-text--teal .xcel-text-content,
+.xcel-text--teal .xcel-text-content h1,
+.xcel-text--teal .xcel-text-content h2,
+.xcel-text--teal .xcel-text-content h3,
+.xcel-text--teal .xcel-text-content h4,
+.xcel-text--teal .xcel-text-content p {
+  color: #005f87;
+}
+
+.xcel-text--black .xcel-text-content,
+.xcel-text--black .xcel-text-content h1,
+.xcel-text--black .xcel-text-content h2,
+.xcel-text--black .xcel-text-content h3,
+.xcel-text--black .xcel-text-content h4,
+.xcel-text--black .xcel-text-content p {
+  color: #333;
+}
