@@ -474,6 +474,12 @@ main .section.background {
   padding: var(--spacing-xbig) 0;
 }
 
+main .section.maroon {
+  background-color: #8b1a2c;
+  margin: 0;
+  padding: var(--spacing-xbig) 0;
+}
+
 /* Base Design System Tokens */
 .dropin-design.dropin-design {
   --background-none: none 0 0% no-repeat padding-box;

@@ -43,6 +43,10 @@
               "value": "background"
             },
             {
+              "name": "Maroon",
+              "value": "maroon"
+            },
+            {
               "name": "Card Tiles",
               "value": "card-tiles"
             },
