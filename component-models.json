@@ -5625,19 +5625,61 @@
     ]
   },
   {
-    "id": "state-item",
+    "id": "state-selector",
     "fields": [
       {
         "component": "text",
-        "name": "name",
-        "label": "State Name",
+        "name": "coloradoLink",
+        "label": "Colorado Link",
         "valueType": "string",
-        "value": "Colorado"
+        "value": "/"
       },
       {
         "component": "text",
-        "name": "link",
-        "label": "Link URL",
+        "name": "michiganLink",
+        "label": "Michigan Link",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "text",
+        "name": "minnesotaLink",
+        "label": "Minnesota Link",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "text",
+        "name": "newMexicoLink",
+        "label": "New Mexico Link",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "text",
+        "name": "northDakotaLink",
+        "label": "North Dakota Link",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "text",
+        "name": "southDakotaLink",
+        "label": "South Dakota Link",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "text",
+        "name": "texasLink",
+        "label": "Texas Link",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "text",
+        "name": "wisconsinLink",
+        "label": "Wisconsin Link",
         "valueType": "string",
         "value": "/"
       }
