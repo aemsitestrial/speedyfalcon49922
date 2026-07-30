@@ -47,6 +47,10 @@
               "value": "maroon"
             },
             {
+              "name": "Pill Buttons",
+              "value": "pill-buttons"
+            },
+            {
               "name": "Card Tiles",
               "value": "card-tiles"
             },
