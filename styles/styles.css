@@ -478,6 +478,27 @@ main .section.maroon {
   background-color: #8b1a2c;
   margin: 0;
   padding: var(--spacing-xbig) 0;
+  color: #fff;
+}
+
+main .section.maroon h1,
+main .section.maroon h2,
+main .section.maroon h3,
+main .section.maroon h4,
+main .section.maroon p {
+  color: #fff;
+}
+
+main .section.maroon a.button {
+  background-color: #fff;
+  color: #8b1a2c;
+  border-color: #fff;
+}
+
+main .section.maroon a.button:hover {
+  background-color: #8b1a2c;
+  color: #fff;
+  border-color: #fff;
 }
 
 /* Base Design System Tokens */
