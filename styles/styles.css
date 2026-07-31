@@ -402,6 +402,10 @@ button.button.secondary:hover {
   color: #fff;
 }
 
+main a.button.square {
+  border-radius: 0;
+}
+
 main blockquote {
   font-style: italic;
   margin: 3rem;
