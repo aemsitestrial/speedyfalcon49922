@@ -1,10 +1,1 @@
-.xcel-button {
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem 0;
-}
-
-/* Override OOTB rounded corners — specificity matches main a.button:any-link */
-main .xcel-button a.button {
-  border-radius: 0;
-}
+/* Square override is in styles/styles.css as main a.button.square */

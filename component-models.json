@@ -6045,18 +6045,22 @@
     "id": "xcel-button",
     "fields": [
       {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
         "component": "text",
         "name": "linkText",
-        "label": "Button Label",
+        "label": "Text",
         "valueType": "string",
         "value": "Learn More"
       },
       {
         "component": "text",
-        "name": "linkUrl",
-        "label": "Link URL",
-        "valueType": "string",
-        "value": "/"
+        "name": "linkTitle",
+        "label": "Title",
+        "valueType": "string"
       }
     ]
   },

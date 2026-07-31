@@ -164,10 +164,11 @@
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
+                "resourceType": "core/franklin/components/button/v1/button",
                 "template": {
                   "name": "Xcel Button",
-                  "model": "xcel-button"
+                  "model": "xcel-button",
+                  "linkType": "square"
                 }
               }
             }
