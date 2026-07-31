@@ -21,28 +21,15 @@
       "id": "xcel-button",
       "fields": [
         {
-          "component": "select",
-          "name": "style",
-          "label": "Button Style",
-          "valueType": "string",
-          "value": "standard",
-          "options": [
-            { "name": "Standard", "value": "standard" },
-            { "name": "Pill", "value": "pill" },
-            { "name": "Square", "value": "square" },
-            { "name": "Card (white box)", "value": "card" }
-          ]
-        },
-        {
           "component": "text",
-          "name": "label",
+          "name": "linkText",
           "label": "Button Label",
           "valueType": "string",
           "value": "Learn More"
         },
         {
           "component": "text",
-          "name": "link",
+          "name": "linkUrl",
           "label": "Link URL",
           "valueType": "string",
           "value": "/"

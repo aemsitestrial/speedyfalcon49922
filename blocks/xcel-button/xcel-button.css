@@ -4,33 +4,7 @@
   padding: 0.5rem 0;
 }
 
-/* Standard — inherits .button as-is, no shape change needed */
-
-/* Pill — fully rounded ends. Uses same specificity as OOTB button to override border-radius */
-main a.button.xcel-btn--pill {
-  border-radius: 999px;
-}
-
-/* Square — sharp corners */
-main a.button.xcel-btn--square {
+/* Override OOTB rounded corners — specificity matches main a.button:any-link */
+main .xcel-button a.button {
   border-radius: 0;
-}
-
-/* Card — large white rectangle with shadow */
-main a.button.xcel-btn--card {
-  background-color: #fff;
-  color: #555;
-  border-color: transparent;
-  border-radius: 4px;
-  padding: 1.2em 3em;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
-  font-size: 1.05rem;
-  min-width: 200px;
-  text-align: center;
-}
-
-main a.button.xcel-btn--card:hover {
-  background-color: #fff;
-  color: #333;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 30%);
 }
