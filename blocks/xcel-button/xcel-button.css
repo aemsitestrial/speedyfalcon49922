@@ -1,1 +1,10 @@
-/* Square override is in styles/styles.css as main a.button.square */
+.xcel-button {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+/* div.xcel-button wrapper is the CSS hook — no dependency on linkType class */
+main .xcel-button a.button {
+  border-radius: 0;
+}
