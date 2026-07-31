@@ -6061,6 +6061,27 @@
         "name": "linkTitle",
         "label": "Title",
         "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "linkType",
+        "label": "Type",
+        "valueType": "string",
+        "value": "square",
+        "options": [
+          {
+            "name": "Square (default)",
+            "value": "square"
+          },
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          }
+        ]
       }
     ]
   },
