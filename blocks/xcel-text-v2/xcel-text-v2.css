@@ -1,0 +1,84 @@
+.xcel-text-v2 {
+  padding: 0;
+}
+
+.xcel-text-v2-inner {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Width variants */
+.xcel-text-v2--narrow .xcel-text-v2-inner {
+  max-width: 640px;
+}
+
+.xcel-text-v2--wide .xcel-text-v2-inner {
+  max-width: 900px;
+}
+
+/* Alignment */
+.xcel-text-v2--center .xcel-text-v2-inner {
+  text-align: center;
+}
+
+.xcel-text-v2--right .xcel-text-v2-inner {
+  text-align: right;
+}
+
+/* Eyebrow */
+.xcel-text-v2-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.5em;
+}
+
+/* Heading */
+.xcel-text-v2-heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5em;
+  line-height: 1.2;
+}
+
+/* Content */
+.xcel-text-v2-content p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* CTA */
+.xcel-text-v2-cta {
+  margin-top: 1.25em;
+}
+
+/* Color: black (default) */
+.xcel-text-v2--black .xcel-text-v2-eyebrow {
+  color: #005f87;
+}
+
+.xcel-text-v2--black .xcel-text-v2-heading,
+.xcel-text-v2--black .xcel-text-v2-content p {
+  color: #333;
+}
+
+/* Color: white */
+.xcel-text-v2--white .xcel-text-v2-eyebrow {
+  color: #20c9a5;
+}
+
+.xcel-text-v2--white .xcel-text-v2-heading,
+.xcel-text-v2--white .xcel-text-v2-content p {
+  color: #fff;
+}
+
+/* Color: teal */
+.xcel-text-v2--teal .xcel-text-v2-eyebrow {
+  color: #333;
+}
+
+.xcel-text-v2--teal .xcel-text-v2-heading,
+.xcel-text-v2--teal .xcel-text-v2-content p {
+  color: #005f87;
+}

@@ -41,6 +41,9 @@
           "...": "../blocks/xcel-text/_*.json#/definitions"
         },
         {
+          "...": "../blocks/xcel-text-v2/_*.json#/definitions"
+        },
+        {
           "...": "../blocks/xcel-button/_*.json#/definitions"
         },
         {
