@@ -1,0 +1,84 @@
+.xcel-cta-banner {
+  width: 100%;
+  padding: 48px 32px;
+  background-color: #8b1a2c;
+  color: #fff;
+}
+
+.xcel-cta-banner[data-bg="teal"] {
+  background-color: #005f87;
+}
+
+.xcel-cta-banner[data-bg="dark"] {
+  background-color: #1a1a2e;
+}
+
+.xcel-cta-banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.xcel-cta-banner-text {
+  flex: 1;
+}
+
+.xcel-cta-banner-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 8px;
+}
+
+.xcel-cta-banner-heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.xcel-cta-banner-subtext {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.xcel-cta-banner-action {
+  flex-shrink: 0;
+}
+
+/* Override OOTB button to white on crimson background */
+main .xcel-cta-banner .xcel-cta-banner-action a.button {
+  background-color: #fff;
+  color: #8b1a2c;
+  border-color: #fff;
+  white-space: nowrap;
+}
+
+main .xcel-cta-banner[data-bg="teal"] .xcel-cta-banner-action a.button {
+  color: #005f87;
+}
+
+main .xcel-cta-banner[data-bg="dark"] .xcel-cta-banner-action a.button {
+  color: #1a1a2e;
+}
+
+main .xcel-cta-banner .xcel-cta-banner-action a.button:hover {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+@media (max-width: 767px) {
+  .xcel-cta-banner-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}

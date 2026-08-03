@@ -6061,6 +6061,67 @@
     ]
   },
   {
+    "id": "xcel-cta-banner",
+    "fields": [
+      {
+        "component": "select",
+        "name": "backgroundColor",
+        "label": "Background Color",
+        "valueType": "string",
+        "value": "crimson",
+        "options": [
+          {
+            "name": "Crimson (default)",
+            "value": "crimson"
+          },
+          {
+            "name": "Teal",
+            "value": "teal"
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "buttonLabel",
+        "label": "Button Label",
+        "valueType": "string",
+        "value": "Contact Us"
+      },
+      {
+        "component": "text",
+        "name": "buttonLink",
+        "label": "Button Link",
+        "valueType": "string",
+        "value": "/contact"
+      },
+      {
+        "component": "text",
+        "name": "eyebrow",
+        "label": "Eyebrow Label",
+        "valueType": "string",
+        "value": "Customer Support"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "valueType": "string",
+        "value": "Contact Customer Service"
+      },
+      {
+        "component": "text",
+        "name": "subtext",
+        "label": "Subtext",
+        "valueType": "string",
+        "value": "Have a question or concern? We are here to help."
+      }
+    ]
+  },
+  {
     "id": "xcel-text-v2",
     "fields": [
       {
