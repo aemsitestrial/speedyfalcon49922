@@ -578,6 +578,7 @@ header .utility-bar .nav-utility ul {
   gap: 24px;
 }
 
+/* stylelint-disable no-descending-specificity */
 header .utility-bar .nav-utility li {
   margin: 0;
 }
@@ -593,3 +594,4 @@ header .utility-bar .nav-utility a {
 header .utility-bar .nav-utility a:hover {
   text-decoration: underline;
 }
+/* stylelint-enable no-descending-specificity */
