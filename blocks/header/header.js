@@ -184,7 +184,7 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['announcements', 'brand', 'sections', 'tools'];
+  const classes = ['announcements', 'brand', 'sections', 'tools', 'utility'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
@@ -387,6 +387,14 @@ export default async function decorate(block) {
   navWrapper.append(announcementWrapper);
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  const navUtility = nav.querySelector('.nav-utility');
+  if (navUtility) {
+    const utilityBar = document.createElement('div');
+    utilityBar.className = 'utility-bar';
+    utilityBar.append(navUtility);
+    navWrapper.prepend(utilityBar);
+  }
 
   renderAuthCombine(
     navSections,
