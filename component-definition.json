@@ -219,6 +219,98 @@
           }
         },
         {
+          "title": "Xcel Hero",
+          "id": "xcel-hero",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Xcel Hero",
+                  "model": "xcel-hero"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Xcel Quick Links",
+          "id": "xcel-quick-links",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Xcel Quick Links",
+                  "model": "xcel-quick-links",
+                  "filter": "xcel-quick-links"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Xcel Quick Link",
+          "id": "xcel-quick-link",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Xcel Quick Link",
+                  "model": "xcel-quick-link"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Xcel Feature Cards",
+          "id": "xcel-feature-cards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Xcel Feature Cards",
+                  "model": "xcel-feature-cards",
+                  "filter": "xcel-feature-cards"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Xcel Feature Card",
+          "id": "xcel-feature-card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Xcel Feature Card",
+                  "model": "xcel-feature-card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Xcel Video Feature",
+          "id": "xcel-video-feature",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Xcel Video Feature",
+                  "model": "xcel-video-feature"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Columns",
           "id": "columns",
           "plugins": {

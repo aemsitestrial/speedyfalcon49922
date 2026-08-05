@@ -53,6 +53,18 @@
           "...": "../blocks/xcel-footer/_*.json#/definitions"
         },
         {
+          "...": "../blocks/xcel-hero/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/xcel-quick-links/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/xcel-feature-cards/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/xcel-video-feature/_*.json#/definitions"
+        },
+        {
           "...": "../blocks/columns/_*.json#/definitions"
         },
         {

@@ -6122,6 +6122,58 @@
     ]
   },
   {
+    "id": "xcel-feature-cards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Section Heading",
+        "valueType": "string",
+        "value": "Affordable Energy"
+      },
+      {
+        "component": "text",
+        "name": "intro",
+        "label": "Intro Text",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "xcel-feature-card",
+    "fields": [
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string",
+        "value": "Learn More"
+      },
+      {
+        "component": "text",
+        "name": "ctaLink",
+        "label": "CTA Link URL",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "value": "<p>Describe this feature.</p>"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Card Heading",
+        "valueType": "string",
+        "value": "Residential Customers"
+      }
+    ]
+  },
+  {
     "id": "xcel-footer",
     "fields": [
       {
@@ -6225,6 +6277,84 @@
         "label": "Copyright Text",
         "valueType": "string",
         "value": "© 2026 Xcel Energy Inc. All rights reserved."
+      }
+    ]
+  },
+  {
+    "id": "xcel-hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "backgroundImage",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "backgroundImageAlt",
+        "label": "Background Image Alt Text",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "valueType": "string",
+        "value": "Our Energy, Your Power"
+      },
+      {
+        "component": "text",
+        "name": "subheading",
+        "label": "Subheading",
+        "valueType": "string",
+        "value": "Making energy work better for you and the communities we serve."
+      }
+    ]
+  },
+  {
+    "id": "xcel-quick-links",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "valueType": "string",
+        "value": "Welcome! Get Started Here"
+      }
+    ]
+  },
+  {
+    "id": "xcel-quick-link",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "iconAlt",
+        "label": "Icon Alt Text",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "valueType": "string",
+        "value": "Pay Your Bill"
+      },
+      {
+        "component": "text",
+        "name": "link",
+        "label": "Link URL",
+        "valueType": "string",
+        "value": "/"
       }
     ]
   },
@@ -6359,6 +6489,46 @@
         "component": "richtext",
         "name": "content",
         "label": "Content",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "xcel-video-feature",
+    "fields": [
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string",
+        "value": "What's Happening Near You"
+      },
+      {
+        "component": "text",
+        "name": "ctaLink",
+        "label": "CTA Link URL",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "valueType": "string",
+        "value": "Local Energy"
+      },
+      {
+        "component": "text",
+        "name": "videoUrl",
+        "label": "Video URL (YouTube)",
         "valueType": "string",
         "value": ""
       }

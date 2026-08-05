@@ -1,0 +1,106 @@
+.xcel-video-feature {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  font-family: var(--type-base-font-family);
+}
+
+.xcel-video-feature-heading {
+  margin: 0 0 12px;
+  color: #1a1a2e;
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.xcel-video-feature-body {
+  color: #4a4a55;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.xcel-video-feature-body p {
+  margin: 0 0 16px;
+}
+
+.xcel-video-feature-cta {
+  display: inline-block;
+  margin-top: 8px;
+  color: #8b1a2c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.xcel-video-feature-cta:hover,
+.xcel-video-feature-cta:focus {
+  text-decoration: underline;
+}
+
+.xcel-video-feature-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.xcel-video-feature-media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.xcel-video-feature-facade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xcel-video-feature-play {
+  width: 68px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: rgb(139 26 44 / 90%);
+  position: relative;
+}
+
+.xcel-video-feature-play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  border-style: solid;
+  border-width: 10px 0 10px 16px;
+  border-color: transparent transparent transparent #fff;
+}
+
+@media (width <= 900px) {
+  .xcel-video-feature {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (width <= 480px) {
+  .xcel-video-feature {
+    padding: 40px 24px;
+  }
+}

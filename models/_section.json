@@ -111,7 +111,11 @@
         "xcel-text",
         "xcel-text-v2",
         "xcel-cta-banner",
-        "xcel-footer"
+        "xcel-footer",
+        "xcel-hero",
+        "xcel-quick-links",
+        "xcel-feature-cards",
+        "xcel-video-feature"
       ]
     }
   ]
