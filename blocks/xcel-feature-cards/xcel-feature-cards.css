@@ -1,0 +1,85 @@
+.xcel-feature-cards {
+  width: 100%;
+  padding: 56px 32px;
+  font-family: Arial, sans-serif;
+}
+
+.xcel-feature-cards-header {
+  max-width: 1200px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.xcel-feature-cards-heading {
+  margin: 0 0 12px;
+  color: #1a1a2e;
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.xcel-feature-cards-intro {
+  margin: 0 auto;
+  max-width: 720px;
+  color: #4a4a55;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.xcel-feature-cards-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.xcel-feature-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid #e0e0e6;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.xcel-feature-card-heading {
+  margin: 0 0 12px;
+  color: #1a1a2e;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.xcel-feature-card-body {
+  color: #4a4a55;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.xcel-feature-card-body p {
+  margin: 0 0 12px;
+}
+
+.xcel-feature-card-cta {
+  margin-top: auto;
+  padding-top: 16px;
+  color: #8b1a2c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.xcel-feature-card-cta:hover,
+.xcel-feature-card-cta:focus {
+  text-decoration: underline;
+}
+
+@media (width <= 480px) {
+  .xcel-feature-cards {
+    padding: 40px 24px;
+  }
+
+  .xcel-feature-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

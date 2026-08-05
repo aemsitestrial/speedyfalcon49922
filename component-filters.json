@@ -39,7 +39,11 @@
       "xcel-text",
       "xcel-text-v2",
       "xcel-cta-banner",
-      "xcel-footer"
+      "xcel-footer",
+      "xcel-hero",
+      "xcel-quick-links",
+      "xcel-feature-cards",
+      "xcel-video-feature"
     ]
   },
   {
@@ -97,5 +101,17 @@
   {
     "id": "video",
     "components": []
+  },
+  {
+    "id": "xcel-feature-cards",
+    "components": [
+      "xcel-feature-card"
+    ]
+  },
+  {
+    "id": "xcel-quick-links",
+    "components": [
+      "xcel-quick-link"
+    ]
   }
 ]
