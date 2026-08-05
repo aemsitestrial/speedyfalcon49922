@@ -50,7 +50,8 @@
 }
 
 /* stylelint-disable no-descending-specificity */
-.xcel-footer-links a {
+.xcel-footer .xcel-footer-links a,
+.xcel-footer .xcel-footer-links a:any-link {
   color: #fff;
   font-size: 0.9375rem;
   font-weight: 400;
@@ -58,8 +59,8 @@
   text-decoration: none;
 }
 
-.xcel-footer-links a:hover,
-.xcel-footer-links a:focus {
+.xcel-footer .xcel-footer-links a:hover,
+.xcel-footer .xcel-footer-links a:focus {
   text-decoration: underline;
 }
 /* stylelint-enable no-descending-specificity */
