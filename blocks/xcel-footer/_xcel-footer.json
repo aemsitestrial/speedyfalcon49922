@@ -21,6 +21,19 @@
       "id": "xcel-footer",
       "fields": [
         {
+          "component": "select",
+          "name": "backgroundColor",
+          "label": "Background Color",
+          "valueType": "string",
+          "value": "dark",
+          "options": [
+            { "name": "Dark Navy (default)", "value": "dark" },
+            { "name": "Maroon", "value": "maroon" },
+            { "name": "Teal", "value": "teal" },
+            { "name": "Crimson", "value": "crimson" }
+          ]
+        },
+        {
           "component": "text",
           "name": "col1heading",
           "label": "Column 1 Heading",
