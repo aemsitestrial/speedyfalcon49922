@@ -2,7 +2,7 @@
   width: 100%;
   background-color: #1a1a2e;
   color: #fff;
-  font-family: roboto, sans-serif;
+  font-family: var(--type-base-font-family);
 }
 
 .xcel-footer-inner {
