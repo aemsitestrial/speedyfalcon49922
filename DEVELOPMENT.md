@@ -60,6 +60,26 @@ If you add `a`, `li`, or `a:hover` selectors at the end of a CSS file that confl
 ```
 The disable comment must have a blank line before it and be ≤100 chars.
 
+### Rule 4 — Commerce boilerplate link color override
+
+This is a **boilerplate-commerce** project. The Commerce Dropin CSS has a global `a:any-link` rule (specificity 0,1,1) that sets links to a dark color. A plain `.my-block a { color: #fff; }` has the same specificity and loses to Commerce CSS when it loads later.
+
+**Always use the block's own class as a parent when coloring links:**
+```css
+/* WRONG — loses to Commerce boilerplate */
+.my-block-links a { color: #fff; }
+
+/* RIGHT — specificity 0,3,1, always wins */
+/* stylelint-disable no-descending-specificity */
+.my-block .my-block-links a,
+.my-block .my-block-links a:any-link {
+  color: #fff;
+}
+/* stylelint-enable no-descending-specificity */
+```
+
+This applies to **any block that sets a custom link color**, especially on dark backgrounds.
+
 ---
 
 ## JCR Field Ordering (critical for Universal Editor blocks)
