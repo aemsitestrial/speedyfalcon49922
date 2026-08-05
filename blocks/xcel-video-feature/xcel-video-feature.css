@@ -7,7 +7,7 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 40px;
-  font-family: var(--type-base-font-family);
+  font-family: Arial, sans-serif;
 }
 
 .xcel-video-feature-heading {
