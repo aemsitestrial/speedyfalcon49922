@@ -18,11 +18,16 @@ export default function decorate(block) {
   const rows = [...block.children];
   block.textContent = '';
 
+  // Row 0: backgroundColor (alphabetically before col*)
+  const bgCell = rows[0]?.children[1] || rows[0]?.children[0];
+  const bgColor = (bgCell?.textContent || '').trim().toLowerCase();
+  if (bgColor) block.classList.add(bgColor);
+
   const columns = document.createElement('div');
   columns.className = 'xcel-footer-columns';
 
-  // Rows 0–9: pairs of (col{n}heading, col{n}links) for 5 columns
-  for (let i = 0; i < 10; i += 2) {
+  // Rows 1–10: pairs of (col{n}heading, col{n}links) for 5 columns
+  for (let i = 1; i < 11; i += 2) {
     const headingCell = rows[i]?.children[1] || rows[i]?.children[0];
     const linksCell = rows[i + 1]?.children[1] || rows[i + 1]?.children[0];
     if (!headingCell) break;
@@ -47,8 +52,8 @@ export default function decorate(block) {
   inner.append(columns);
   block.append(inner);
 
-  // Row 10: copyright
-  const copyrightCell = rows[10]?.children[1] || rows[10]?.children[0];
+  // Row 11: copyright
+  const copyrightCell = rows[11]?.children[1] || rows[11]?.children[0];
   const copyrightText = (copyrightCell?.textContent || '').trim();
   if (copyrightText) {
     const bar = document.createElement('div');

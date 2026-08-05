@@ -5,6 +5,12 @@
   font-family: Arial, sans-serif;
 }
 
+.xcel-footer.maroon { background-color: #8b1a2c; }
+
+.xcel-footer.teal { background-color: #005f87; }
+
+.xcel-footer.crimson { background-color: #c8102e; }
+
 .xcel-footer-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -43,30 +49,33 @@
   margin-bottom: 0;
 }
 
+/* stylelint-disable no-descending-specificity */
 .xcel-footer-links a {
-  color: #c9c9d4;
+  color: #fff;
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.4;
   text-decoration: none;
   transition: color 0.15s ease;
+  opacity: 0.85;
 }
 
 .xcel-footer-links a:hover,
 .xcel-footer-links a:focus {
-  color: #fff;
+  opacity: 1;
   text-decoration: underline;
 }
+/* stylelint-enable no-descending-specificity */
 
 .xcel-footer-bottom {
-  border-top: 1px solid rgb(255 255 255 / 12%);
+  border-top: 1px solid rgb(255 255 255 / 20%);
 }
 
 .xcel-footer-bottom p {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px 32px;
-  color: rgb(255 255 255 / 65%);
+  color: rgb(255 255 255 / 75%);
   font-size: 0.8125rem;
 }
 
