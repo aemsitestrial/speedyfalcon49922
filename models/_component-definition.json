@@ -50,6 +50,9 @@
           "...": "../blocks/xcel-cta-banner/_*.json#/definitions"
         },
         {
+          "...": "../blocks/xcel-footer/_*.json#/definitions"
+        },
+        {
           "...": "../blocks/columns/_*.json#/definitions"
         },
         {
