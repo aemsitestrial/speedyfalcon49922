@@ -56,13 +56,10 @@
   font-weight: 400;
   line-height: 1.4;
   text-decoration: none;
-  transition: color 0.15s ease;
-  opacity: 0.85;
 }
 
 .xcel-footer-links a:hover,
 .xcel-footer-links a:focus {
-  opacity: 1;
   text-decoration: underline;
 }
 /* stylelint-enable no-descending-specificity */
