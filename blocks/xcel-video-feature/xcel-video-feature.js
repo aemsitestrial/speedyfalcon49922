@@ -8,14 +8,9 @@
  * light — a poster/facade is shown until the user clicks play.
  */
 function youTubeId(url) {
-  const patterns = [
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/,
-  ];
-  for (const re of patterns) {
-    const m = url.match(re);
-    if (m) return m[1];
-  }
-  return null;
+  const re = /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/;
+  const m = url.match(re);
+  return m ? m[1] : null;
 }
 
 function buildVideo(url) {
