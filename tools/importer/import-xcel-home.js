@@ -5,6 +5,11 @@
 import stateSelectorParser from './parsers/state-selector.js';
 import xcelCtaBannerParser from './parsers/xcel-cta-banner.js';
 import xcelFooterParser from './parsers/xcel-footer.js';
+import xcelHeroParser from './parsers/xcel-hero.js';
+import xcelQuickLinksParser from './parsers/xcel-quick-links.js';
+import xcelFeatureCardsParser from './parsers/xcel-feature-cards.js';
+import xcelVideoFeatureParser from './parsers/xcel-video-feature.js';
+import teaserParser from './parsers/teaser.js';
 
 // TRANSFORMER IMPORTS
 import cleanupTransformer from './transformers/xcel-cleanup.js';
@@ -13,49 +18,54 @@ import sectionsTransformer from './transformers/xcel-sections.js';
 // PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
 const PAGE_TEMPLATE = {
   name: 'xcel-home',
-  description: 'Xcel Energy homepage (state-selector landing). Sections: header/utility nav, state selector (8 service areas), Contact Customer Service CTA banner, and 5-column footer with copyright and social links.',
+  description: 'Xcel Energy Colorado homepage (behind the state-selector gate). Sections top-to-bottom: hero, quick-links, promo (teaser), feature-cards x3, video-feature, promo hero (teaser), and the contact CTA banner.',
   urls: [
-    'https://www.xcelenergy.com',
+    'https://co.my.xcelenergy.com/s/',
   ],
   blocks: [
     {
-      name: 'state-selector',
-      instances: ['#xeg-main .ui-widget:nth-of-type(1)'],
+      name: 'xcel-hero',
+      instances: ['c-xeg-hero-v2:has(section[data-blade-theme="dark"])'],
+    },
+    {
+      name: 'xcel-quick-links',
+      instances: ['c-xeg-multi-action-banner'],
+    },
+    {
+      name: 'xcel-feature-cards',
+      instances: ['c-xeg-featured-content-v2'],
+    },
+    {
+      name: 'xcel-video-feature',
+      instances: ['c-dc-video-component-v2'],
+    },
+    {
+      name: 'teaser',
+      instances: [
+        'c-xeg-two-column-v2',
+        'c-xeg-hero-v2:has(section[data-blade-theme="light"])',
+      ],
     },
     {
       name: 'xcel-cta-banner',
-      instances: ['#xeg-main .ui-widget:nth-of-type(2)'],
+      instances: ['c-xeg-contact-support'],
     },
     {
       name: 'xcel-footer',
       instances: ['c-xeg-site-footer'],
     },
   ],
+  // Each content widget is its own section; section breaks are inserted between
+  // them in document order. Styles are block-intrinsic, so no section metadata.
   sections: [
-    {
-      id: 'rc2',
-      name: 'State Selector',
-      selector: ['#xeg-main .ui-widget:nth-of-type(1)'],
-      style: null,
-      blocks: ['state-selector'],
-      defaultContent: [],
-    },
-    {
-      id: 'rc3',
-      name: 'Contact Customer Service CTA',
-      selector: ['#xeg-main .ui-widget:nth-of-type(2)'],
-      style: null,
-      blocks: ['xcel-cta-banner'],
-      defaultContent: [],
-    },
-    {
-      id: 'rc4',
-      name: 'Footer',
-      selector: ['c-xeg-site-footer'],
-      style: null,
-      blocks: ['xcel-footer'],
-      defaultContent: [],
-    },
+    { id: 'rc1', name: 'Hero', selector: ['c-xeg-hero-v2:has(section[data-blade-theme="dark"])'], style: null, blocks: ['xcel-hero'], defaultContent: [] },
+    { id: 'rc2', name: 'Quick Links', selector: ['c-xeg-multi-action-banner'], style: null, blocks: ['xcel-quick-links'], defaultContent: [] },
+    { id: 'rc3', name: 'Convenient Energy', selector: ['c-xeg-two-column-v2'], style: null, blocks: ['teaser'], defaultContent: [] },
+    { id: 'rc4', name: 'Feature Cards', selector: ['c-xeg-featured-content-v2'], style: null, blocks: ['xcel-feature-cards'], defaultContent: [] },
+    { id: 'rc5', name: 'Local Energy Video', selector: ['c-dc-video-component-v2'], style: null, blocks: ['xcel-video-feature'], defaultContent: [] },
+    { id: 'rc6', name: 'Sustainable Energy', selector: ['c-xeg-hero-v2:has(section[data-blade-theme="light"])'], style: null, blocks: ['teaser'], defaultContent: [] },
+    { id: 'rc7', name: 'Contact Customer Service CTA', selector: ['c-xeg-contact-support'], style: null, blocks: ['xcel-cta-banner'], defaultContent: [] },
+    { id: 'rc8', name: 'Footer', selector: ['c-xeg-site-footer'], style: null, blocks: ['xcel-footer'], defaultContent: [] },
   ],
 };
 
@@ -64,6 +74,11 @@ const parsers = {
   'state-selector': stateSelectorParser,
   'xcel-cta-banner': xcelCtaBannerParser,
   'xcel-footer': xcelFooterParser,
+  'xcel-hero': xcelHeroParser,
+  'xcel-quick-links': xcelQuickLinksParser,
+  'xcel-feature-cards': xcelFeatureCardsParser,
+  'xcel-video-feature': xcelVideoFeatureParser,
+  teaser: teaserParser,
 };
 
 // TRANSFORMER REGISTRY - cleanup first, then section breaks/metadata (afterTransform)
@@ -163,11 +178,10 @@ export default {
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
-    // 6. Generate sanitized path -> /xcel-home
-    // The source URL path is "/" (homepage), which would sanitize to an empty
-    // string; map the homepage explicitly to the target document path.
-    const rawPath = new URL(params.originalURL).pathname.replace(/\/$/, '').replace(/\.html$/, '');
-    const path = WebImporter.FileUtils.sanitizePath(rawPath || '/xcel-home');
+    // 6. Target path is always /xcel-home for this single-page migration.
+    // The Colorado homepage source path ("/s/") is not meaningful for the target,
+    // so map it explicitly to the intended document path.
+    const path = WebImporter.FileUtils.sanitizePath('/xcel-home');
 
     return [{
       element: main,
