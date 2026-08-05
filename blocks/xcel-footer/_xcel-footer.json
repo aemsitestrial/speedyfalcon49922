@@ -1,0 +1,77 @@
+{
+  "definitions": [
+    {
+      "title": "Xcel Footer",
+      "id": "xcel-footer",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Xcel Footer",
+              "model": "xcel-footer",
+              "filter": "xcel-footer"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Xcel Footer Column",
+      "id": "xcel-footer-column",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Xcel Footer Column",
+              "model": "xcel-footer-column"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "xcel-footer",
+      "fields": [
+        {
+          "component": "text",
+          "name": "copyright",
+          "label": "Copyright Text",
+          "valueType": "string",
+          "value": "© 2026 Xcel Energy Inc. All rights reserved."
+        }
+      ]
+    },
+    {
+      "id": "xcel-footer-column",
+      "fields": [
+        {
+          "component": "text",
+          "name": "heading",
+          "label": "Column Heading",
+          "valueType": "string",
+          "value": "Company"
+        },
+        {
+          "component": "richtext",
+          "name": "links",
+          "label": "Links",
+          "description": "A bulleted list of links shown under the heading.",
+          "valueType": "string",
+          "value": "<ul><li><a href=\"/about\">About Us</a></li></ul>"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "xcel-footer",
+      "components": [
+        "xcel-footer-column"
+      ]
+    }
+  ]
+}

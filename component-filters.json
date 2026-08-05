@@ -38,7 +38,14 @@
       "state-selector",
       "xcel-text",
       "xcel-text-v2",
-      "xcel-cta-banner"
+      "xcel-cta-banner",
+      "xcel-footer"
+    ]
+  },
+  {
+    "id": "xcel-footer",
+    "components": [
+      "xcel-footer-column"
     ]
   },
   {

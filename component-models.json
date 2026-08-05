@@ -6122,6 +6122,38 @@
     ]
   },
   {
+    "id": "xcel-footer",
+    "fields": [
+      {
+        "component": "text",
+        "name": "copyright",
+        "label": "Copyright Text",
+        "valueType": "string",
+        "value": "© 2026 Xcel Energy Inc. All rights reserved."
+      }
+    ]
+  },
+  {
+    "id": "xcel-footer-column",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Column Heading",
+        "valueType": "string",
+        "value": "Company"
+      },
+      {
+        "component": "richtext",
+        "name": "links",
+        "label": "Links",
+        "description": "A bulleted list of links shown under the heading.",
+        "valueType": "string",
+        "value": "<ul><li><a href=\"/about\">About Us</a></li></ul>"
+      }
+    ]
+  },
+  {
     "id": "xcel-text-v2",
     "fields": [
       {
