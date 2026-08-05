@@ -1,36 +1,16 @@
-import { moveInstrumentation } from '../../scripts/scripts.js';
-
 function normalizeLinks(cell) {
   const list = cell.querySelector('ul, ol');
   if (list) {
     list.classList.add('xcel-footer-links');
     return list;
   }
-
   const ul = document.createElement('ul');
   ul.className = 'xcel-footer-links';
-  const anchors = [...cell.querySelectorAll('a')];
-  if (anchors.length) {
-    anchors.forEach((a) => {
-      const li = document.createElement('li');
-      li.append(a);
-      ul.append(li);
-    });
-  } else {
-    cell.textContent
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean)
-      .forEach((line) => {
-        const [label, href] = line.split(',').map((part) => (part || '').trim());
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.textContent = label;
-        a.href = href || '#';
-        li.append(a);
-        ul.append(li);
-      });
-  }
+  [...cell.querySelectorAll('a')].forEach((a) => {
+    const li = document.createElement('li');
+    li.append(a);
+    ul.append(li);
+  });
   return ul;
 }
 
@@ -40,44 +20,42 @@ export default function decorate(block) {
 
   const columns = document.createElement('div');
   columns.className = 'xcel-footer-columns';
-  let bottomBar = null;
 
-  rows.forEach((row) => {
-    const cells = [...row.children];
-    const contentCell = cells[1] || cells[0];
-    const hasLinks = contentCell && contentCell.querySelector('a, ul, ol');
+  // Rows 0–9: pairs of (col{n}heading, col{n}links) for 5 columns
+  for (let i = 0; i < 10; i += 2) {
+    const headingCell = rows[i]?.children[1] || rows[i]?.children[0];
+    const linksCell = rows[i + 1]?.children[1] || rows[i + 1]?.children[0];
+    if (!headingCell) break;
 
-    if (!hasLinks) {
-      const text = ((cells[1] || cells[0])?.textContent || '').trim();
-      if (!text) return;
-      bottomBar = document.createElement('div');
-      bottomBar.className = 'xcel-footer-bottom';
-      const p = document.createElement('p');
-      p.textContent = text;
-      bottomBar.append(p);
-      return;
-    }
-
-    const heading = (cells[0]?.textContent || '').trim();
     const column = document.createElement('div');
     column.className = 'xcel-footer-column';
-    moveInstrumentation(row, column);
 
-    if (heading) {
+    const headingText = (headingCell.textContent || '').trim();
+    if (headingText) {
       const h = document.createElement('h4');
       h.className = 'xcel-footer-heading';
-      h.textContent = heading;
+      h.textContent = headingText;
       column.append(h);
     }
 
-    column.append(normalizeLinks(contentCell));
+    if (linksCell) column.append(normalizeLinks(linksCell));
     columns.append(column);
-  });
+  }
 
   const inner = document.createElement('div');
   inner.className = 'xcel-footer-inner';
   inner.append(columns);
   block.append(inner);
 
-  if (bottomBar) block.append(bottomBar);
+  // Row 10: copyright
+  const copyrightCell = rows[10]?.children[1] || rows[10]?.children[0];
+  const copyrightText = (copyrightCell?.textContent || '').trim();
+  if (copyrightText) {
+    const bar = document.createElement('div');
+    bar.className = 'xcel-footer-bottom';
+    const p = document.createElement('p');
+    p.textContent = copyrightText;
+    bar.append(p);
+    block.append(bar);
+  }
 }

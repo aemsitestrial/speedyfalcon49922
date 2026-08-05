@@ -97,11 +97,5 @@
   {
     "id": "video",
     "components": []
-  },
-  {
-    "id": "xcel-footer",
-    "components": [
-      "xcel-footer-column"
-    ]
   }
 ]

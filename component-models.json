@@ -6126,30 +6126,80 @@
     "fields": [
       {
         "component": "text",
-        "name": "copyright",
-        "label": "Copyright Text",
-        "valueType": "string",
-        "value": "© 2026 Xcel Energy Inc. All rights reserved."
-      }
-    ]
-  },
-  {
-    "id": "xcel-footer-column",
-    "fields": [
-      {
-        "component": "text",
-        "name": "heading",
-        "label": "Column Heading",
+        "name": "col1heading",
+        "label": "Column 1 Heading",
         "valueType": "string",
         "value": "Company"
       },
       {
         "component": "richtext",
-        "name": "links",
-        "label": "Links",
-        "description": "A bulleted list of links shown under the heading.",
+        "name": "col1links",
+        "label": "Column 1 Links",
         "valueType": "string",
-        "value": "<ul><li><a href=\"/about\">About Us</a></li></ul>"
+        "value": "<ul><li><a href=\"/about\">About Us</a></li><li><a href=\"/careers\">Careers</a></li><li><a href=\"/newsroom\">Newsroom</a></li><li><a href=\"/investors\">Investor Relations</a></li></ul>"
+      },
+      {
+        "component": "text",
+        "name": "col2heading",
+        "label": "Column 2 Heading",
+        "valueType": "string",
+        "value": "Energy & Environment"
+      },
+      {
+        "component": "richtext",
+        "name": "col2links",
+        "label": "Column 2 Links",
+        "valueType": "string",
+        "value": "<ul><li><a href=\"/renewable\">Renewable Energy</a></li><li><a href=\"/efficiency\">Energy Efficiency</a></li><li><a href=\"/environment\">Environment</a></li></ul>"
+      },
+      {
+        "component": "text",
+        "name": "col3heading",
+        "label": "Column 3 Heading",
+        "valueType": "string",
+        "value": "Partner Resources"
+      },
+      {
+        "component": "richtext",
+        "name": "col3links",
+        "label": "Column 3 Links",
+        "valueType": "string",
+        "value": "<ul><li><a href=\"/partners\">Business Partners</a></li><li><a href=\"/contractors\">Contractors</a></li><li><a href=\"/economic\">Economic Development</a></li></ul>"
+      },
+      {
+        "component": "text",
+        "name": "col4heading",
+        "label": "Column 4 Heading",
+        "valueType": "string",
+        "value": "Outage & Safety"
+      },
+      {
+        "component": "richtext",
+        "name": "col4links",
+        "label": "Column 4 Links",
+        "valueType": "string",
+        "value": "<ul><li><a href=\"/outage\">Report Outage</a></li><li><a href=\"/outage-map\">Outage Map</a></li><li><a href=\"/safety\">Safety Tips</a></li></ul>"
+      },
+      {
+        "component": "text",
+        "name": "col5heading",
+        "label": "Column 5 Heading",
+        "valueType": "string",
+        "value": "Customer Support"
+      },
+      {
+        "component": "richtext",
+        "name": "col5links",
+        "label": "Column 5 Links",
+        "valueType": "string",
+        "value": "<ul><li><a href=\"/pay\">Pay Bill</a></li><li><a href=\"/start-stop\">Start/Stop Service</a></li><li><a href=\"/contact\">Contact Us</a></li><li><a href=\"/faq\">FAQs</a></li></ul>"
+      },
+      {
+        "component": "text",
+        "name": "copyright",
+        "label": "Copyright Text",
+        "valueType": "string",
+        "value": "© 2026 Xcel Energy Inc. All rights reserved."
       }
     ]
   },
