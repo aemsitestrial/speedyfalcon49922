@@ -6292,13 +6292,6 @@
       },
       {
         "component": "text",
-        "name": "backgroundImageAlt",
-        "label": "Background Image Alt Text",
-        "valueType": "string",
-        "value": ""
-      },
-      {
-        "component": "text",
         "name": "heading",
         "label": "Heading",
         "valueType": "string",
