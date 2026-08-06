@@ -1,3 +1,12 @@
+main > .section:has(.xcel-hero) {
+  margin: 0;
+}
+
+main > .section:has(.xcel-hero) > div {
+  max-width: unset;
+  padding: 0;
+}
+
 .xcel-hero {
   position: relative;
   width: 100%;
