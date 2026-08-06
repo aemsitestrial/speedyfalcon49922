@@ -66,25 +66,40 @@ export default function decorate(block) {
   const grid = document.createElement('ul');
   grid.className = 'xcel-feature-cards-grid';
 
-  rows.forEach((row, index) => {
+  // xwalk may render each container field as its own row rather than as cells
+  // in a single row. Treat every link-less row with ≤2 cells that appears
+  // before the first card as part of the header section.
+  let headingSet = false;
+
+  rows.forEach((row) => {
     const cells = [...row.children];
     const hasLink = !!row.querySelector('a');
 
-    // The first link-less row (1-2 plain text cells) is the section header.
-    if (index === 0 && !hasLink && cells.length <= 2) {
-      const heading = (cells[0]?.textContent || '').trim();
-      const intro = (cells[1]?.textContent || '').trim();
-      if (heading) {
-        const h = document.createElement('h2');
-        h.className = 'xcel-feature-cards-heading';
-        h.textContent = heading;
-        header.append(h);
-      }
-      if (intro) {
-        const p = document.createElement('p');
-        p.className = 'xcel-feature-cards-intro';
-        p.textContent = intro;
-        header.append(p);
+    if (!hasLink && cells.length <= 2 && grid.childElementCount === 0) {
+      if (!headingSet) {
+        const heading = (cells[0]?.textContent || '').trim();
+        if (heading) {
+          const h = document.createElement('h2');
+          h.className = 'xcel-feature-cards-heading';
+          h.textContent = heading;
+          header.append(h);
+          headingSet = true;
+        }
+        const intro = (cells[1]?.textContent || '').trim();
+        if (intro) {
+          const p = document.createElement('p');
+          p.className = 'xcel-feature-cards-intro';
+          p.textContent = intro;
+          header.append(p);
+        }
+      } else {
+        const intro = (cells[0]?.textContent || '').trim();
+        if (intro) {
+          const p = document.createElement('p');
+          p.className = 'xcel-feature-cards-intro';
+          p.textContent = intro;
+          header.append(p);
+        }
       }
       return;
     }
