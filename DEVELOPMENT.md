@@ -108,9 +108,41 @@ Alternative: use content-type detection in JS (detect a link by `/` or `http` pr
 
 ---
 
-## ESLint Rules (airbnb-base)
+## ESLint Rules (airbnb-base — all fail CI if violated)
 
-- Max 100 chars per line
+### Rule 1 — No `for...of` loops
+```js
+// WRONG
+for (const item of items) { ... }
+
+// RIGHT
+items.forEach((item) => { ... });
+```
+
+### Rule 2 — No `continue` statement
+```js
+// WRONG
+items.forEach((item) => {
+  if (!item) continue;  // banned
+  doSomething(item);
+});
+
+// RIGHT
+items.forEach((item) => {
+  if (item) doSomething(item);
+});
+```
+
+### Rule 3 — No unused variables
+```js
+// WRONG
+const iconImg = picture.querySelector('img');  // declared but never read again
+
+// RIGHT — remove it, or use it
+picture.querySelector('img').alt = altText;
+```
+
+### Rule 4 — Max line length (100 chars)
 - `ignoreStrings: true` and `ignoreTemplateLiterals: true` — string/template lines not checked
 - Lines with no strings/templates still get checked — break long `.find()` / `.map()` callbacks to multi-line
 
