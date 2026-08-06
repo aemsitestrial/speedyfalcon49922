@@ -148,6 +148,150 @@ picture.querySelector('img').alt = altText;
 
 ---
 
+## Xcel Site Design Spec (extracted from xcelenergy.com screenshots — 2026-08-06)
+
+This section documents the visual design patterns from the real Xcel Energy site.
+All block updates must match these patterns. EMA: apply these before writing any CSS.
+
+---
+
+### Universal Patterns — Apply to EVERY block
+
+#### 1. Red dots decorator above section headings
+Every section heading on the real site has 3 small red dots (`•••`) above it.
+Implement as a `::before` pseudoelement on the heading element:
+```css
+.my-block-heading::before {
+  content: "•••";
+  display: block;
+  color: #c8102e;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 8px;
+}
+```
+Blocks that need this: `xcel-feature-cards`, `xcel-video-feature`, `teaser`.
+
+#### 2. CTA link style — ALL CAPS + arrow
+Every CTA link on the real site is ALL CAPS with a `→` arrow and a bottom underline. No filled button background.
+```css
+.my-block-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b1a2c;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+.my-block-cta::after {
+  content: "→";
+  text-decoration: none;
+}
+```
+Blocks that need this: `xcel-feature-cards`, `xcel-video-feature`, `teaser`.
+
+#### 3. Section heading typography
+```css
+.my-block-heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin: 0 0 16px;
+}
+```
+
+---
+
+### Block-by-Block Design Spec
+
+#### xcel-hero
+- **Height:** ~60vh minimum (real site hero fills most of viewport)
+- **Red accent bar** above heading — short horizontal red line (~32px wide, 4px tall):
+```css
+.xcel-hero-heading::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 4px;
+  background-color: #c8102e;
+  margin-bottom: 16px;
+}
+```
+- Heading: white, bold, large (2 lines on desktop)
+- Subheading: white, smaller, below heading
+
+#### xcel-quick-links
+Current design (icon tiles) must be **completely replaced** to match real site:
+- **Full-width dark crimson band** (`#8b1a2c`) — not white card tiles
+- **"Welcome! Get Started Here"** heading in white, bold, centered
+- **4 white outlined buttons** in a row — white border, white text, transparent background, fills on hover
+- **NO icons** — text-only buttons
+- Real site layout: heading on top, buttons in a row below
+
+#### xcel-feature-cards (Affordable Energy / Cleaner Energy variant — 2-3 cards)
+- Red `•••` dots above section heading
+- Each card: **photo on top**, then card body below
+- **Red left vertical bar** (3px wide, full card-body height) on the left of the card title — `border-left: 3px solid #c8102e`
+- Card title: bold, dark, ~1.25rem
+- Description text below title
+- ALL CAPS CTA with → arrow at bottom
+- Cards need an **image field** added to the model (Phase 3 — requires re-authoring)
+
+#### xcel-feature-cards (Personalized Energy variant — 4 cards)
+- Red `•••` dots above section heading
+- Each card is a **media-object layout**: cream icon square on LEFT (~80px), text on RIGHT
+- Icon area: `~80×80px`, cream background (`#f5ede8`), centered icon image
+- Text: title bold, description, ALL CAPS CTA with →
+- 2×2 grid layout on desktop
+- Needs image field on card items for the icon (Phase 3)
+
+#### teaser (Convenient Energy / Safer Energy)
+- Two-column: **image LEFT** (~35% width), **text RIGHT**
+- White background
+- Red `•••` dots above heading
+- Heading bold large
+- Description text
+- ALL CAPS CTA with →
+
+#### teaser (Sustainable Energy)
+- Two-column: **text LEFT**, **large illustration RIGHT**
+- **Cream background** (`#f5ede8`) on the entire section
+- Same `•••` dots + ALL CAPS CTA pattern
+
+#### xcel-video-feature (Local Energy)
+- Two-column: **text LEFT**, **video RIGHT** — same as current
+- Red `•••` dots above heading
+- ALL CAPS CTA with → (currently sentence case — needs update)
+
+#### xcel-cta-banner (Contact Customer Service)
+- Dark crimson background `#8b1a2c` (already correct)
+- Add **white left vertical bar** — `border-left: 4px solid #fff` on the text container
+- Heading + subtext white (already correct)
+- Button: white outlined (`border: 2px solid #fff`, white text, transparent bg, fills on hover)
+
+---
+
+### Phase Plan for Next Session
+
+#### Phase 1 — CSS only, no re-authoring (do first)
+- [ ] `xcel-hero` — add red accent bar before heading, increase min-height to 60vh
+- [ ] `xcel-feature-cards` — add `•••` dots to heading, ALL CAPS + arrow CTA
+- [ ] `xcel-video-feature` — add `•••` dots to heading, ALL CAPS + arrow CTA
+- [ ] `xcel-cta-banner` — add white left vertical bar accent
+
+#### Phase 2 — JS + CSS restyle, no model change (do second)
+- [ ] `xcel-quick-links` — full restyle: dark crimson band, white outlined buttons, remove icons
+
+#### Phase 3 — Model + JS + CSS + re-authoring in UE (separate session)
+- [ ] `xcel-feature-cards` — add image field to model, render photo on top of card, red left border on title
+- [ ] Re-author all 3 feature card blocks in UE after model change
+
+---
+
 ## Block vs Core Component
 
 | If it is... | Then build... |
