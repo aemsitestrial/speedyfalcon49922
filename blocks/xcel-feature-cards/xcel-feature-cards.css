@@ -10,6 +10,15 @@
   text-align: center;
 }
 
+.xcel-feature-cards-heading::before {
+  content: "•••";
+  display: block;
+  color: #c8102e;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 8px;
+}
+
 .xcel-feature-cards-heading {
   margin: 0 0 12px;
   color: #1a1a2e;
@@ -64,14 +73,25 @@
 .xcel-feature-card-cta {
   margin-top: auto;
   padding-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: #8b1a2c;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.xcel-feature-card-cta::after {
+  content: "→";
   text-decoration: none;
 }
 
 .xcel-feature-card-cta:hover,
 .xcel-feature-card-cta:focus {
-  text-decoration: underline;
+  opacity: 0.8;
 }
 
 @media (width <= 480px) {

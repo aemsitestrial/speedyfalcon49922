@@ -25,6 +25,8 @@
 
 .xcel-cta-banner-text {
   flex: 1;
+  border-left: 4px solid #fff;
+  padding-left: 20px;
 }
 
 .xcel-cta-banner-eyebrow {
