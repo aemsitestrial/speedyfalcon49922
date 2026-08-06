@@ -2,22 +2,20 @@
  * xcel-hero
  * Branded homepage hero: a headline + subheading over an optional background image.
  *
- * Authoring model (xwalk fields: backgroundImage, backgroundImageAlt, heading, subheading):
- *   row 1: background image
- *   row 2: background image alt text
- *   row 3: heading
- *   row 4: subheading
+ * Authoring model (xwalk fields in JCR-alphabetical order: backgroundImage, heading, subheading):
+ *   row 1: background image (reference)
+ *   row 2: heading (text)
+ *   row 3: subheading (text)
  */
 export default function decorate(block) {
   const rows = [...block.children];
 
   const picture = rows[0]?.querySelector('picture');
   const img = rows[0]?.querySelector('img');
-  const altText = (rows[1]?.textContent || '').trim();
-  const heading = (rows[2]?.textContent || '').trim();
-  const subheading = (rows[3]?.textContent || '').trim();
+  const heading = (rows[1]?.textContent || '').trim();
+  const subheading = (rows[2]?.textContent || '').trim();
 
-  if (img && altText) img.setAttribute('alt', altText);
+  if (img) img.setAttribute('alt', heading);
 
   block.textContent = '';
 
