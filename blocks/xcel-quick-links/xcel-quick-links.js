@@ -2,12 +2,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 /*
  * xcel-quick-links
- * "Welcome! Get Started Here" — an optional heading followed by a row of
- * compact icon quick-link tiles.
- *
- * Universal Editor model (container + repeatable link items):
- *   - Container field: heading (text) -> the first row (no link).
- *   - Each link item: icon (image, optional) + label (text) + link (url).
+ * Dark crimson band with "Welcome! Get Started Here" heading and 4 white outlined buttons.
  */
 export default function decorate(block) {
   const rows = [...block.children];
@@ -22,7 +17,7 @@ export default function decorate(block) {
   rows.forEach((row) => {
     const cells = [...row.children];
 
-    // The container heading is a single-cell row with no link and no image.
+    // Container heading: single cell, no link, no image.
     if (cells.length === 1 && !row.querySelector('a, picture')) {
       const text = (cells[0]?.textContent || '').trim();
       if (text) {
@@ -34,18 +29,12 @@ export default function decorate(block) {
       return;
     }
 
-    // Link item — JCR-alphabetical order: icon, iconAlt, label, link.
-    // xwalk skips ALL empty fields (both reference and text), so any field
-    // that has no value simply won't produce a cell. Detect by content type
-    // instead of fixed index so any combination of empty fields is handled.
-    let picture = null;
+    // Link item — detect by content type (xwalk skips empty fields so indices shift).
     let label = '';
     let href = '#';
 
     cells.forEach((cell) => {
-      if (cell.querySelector('picture')) {
-        picture = cell.querySelector('picture');
-      } else if (cell.querySelector('a')) {
+      if (cell.querySelector('a')) {
         href = cell.querySelector('a').getAttribute('href') || '#';
       } else {
         const text = (cell.textContent || '').trim();
@@ -65,17 +54,10 @@ export default function decorate(block) {
     link.className = 'xcel-quick-links-link';
     link.href = href;
 
-    if (picture) {
-      const icon = document.createElement('span');
-      icon.className = 'xcel-quick-links-icon';
-      icon.append(picture);
-      link.append(icon);
-    }
-
-    const text = document.createElement('span');
-    text.className = 'xcel-quick-links-label';
-    text.textContent = label;
-    link.append(text);
+    const span = document.createElement('span');
+    span.className = 'xcel-quick-links-label';
+    span.textContent = label;
+    link.append(span);
 
     li.append(link);
     list.append(li);
