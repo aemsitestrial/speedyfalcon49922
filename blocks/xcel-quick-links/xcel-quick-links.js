@@ -34,18 +34,25 @@ export default function decorate(block) {
       return;
     }
 
-    // Link item — xwalk cells in JCR-alphabetical model order:
-    //   [0] icon (image), [1] iconAlt, [2] label, [3] link
-    const picture = cells[0]?.querySelector('picture');
-    const iconImg = cells[0]?.querySelector('img');
-    const iconAlt = (cells[1]?.textContent || '').trim();
-    const label = (cells[2]?.textContent || '').trim();
-    const linkCell = cells[3];
+    // Link item — JCR-alphabetical order: icon, iconAlt, label, link.
+    // xwalk skips empty reference fields, so when no icon is set the cells
+    // shift left by one. Advance past the icon cell only if it has a picture.
+    let cellIdx = 0;
+    let picture = null;
+    let iconImg = null;
+    if (cells[cellIdx]?.querySelector('picture')) {
+      picture = cells[cellIdx].querySelector('picture');
+      iconImg = picture?.querySelector('img');
+      cellIdx += 1;
+    }
+    const iconAlt = (cells[cellIdx]?.textContent || '').trim();
+    const label = (cells[cellIdx + 1]?.textContent || '').trim();
+    const linkCell = cells[cellIdx + 2];
     const href = linkCell?.querySelector('a')?.getAttribute('href')
       || (linkCell?.textContent || '').trim()
       || '#';
 
-    if (iconImg && iconAlt) iconImg.setAttribute('alt', iconAlt);
+    if (iconImg && iconAlt) iconImg.alt = iconAlt;
 
     const li = document.createElement('li');
     li.className = 'xcel-quick-links-item';
