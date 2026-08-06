@@ -1,6 +1,5 @@
   .teaser.block {
     height: 490px;
-    border-radius: 12px;
     position: relative;
     overflow: hidden;
     font-family: Arial, sans-serif;
@@ -41,19 +40,28 @@
     opacity: 1;
 }
 
+.teaser.block > .foreground > .text > .title::before {
+  content: "•••";
+  display: block;
+  color: #c8102e;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 8px;
+}
+
 .teaser.block > .foreground > .text > .title :where(h1,h2,h3,h4,h5,h6) {
   margin: 0;
-  color: #FFF;
+  color: #fff;
   letter-spacing: 0;
-  font: normal normal normal 54px/50px Baskerville, serif;
+  font: normal normal bold 54px/50px Arial, sans-serif;
 }
 
 @media (width >= 900px) {
   .teaser.block > .foreground > .text > .title :where(h1,h2,h3,h4,h5,h6) {
-      margin: 0;
-      color: #FFF;
-      letter-spacing: 0;
-      font: normal normal normal 56px/56px Baskerville, serif;
+    margin: 0;
+    color: #fff;
+    letter-spacing: 0;
+    font: normal normal bold 56px/56px Arial, sans-serif;
   }
 }
 
@@ -68,8 +76,33 @@
 
 
 .teaser.block > .foreground > .text > .cta > a.button {
-    border: 0;
-    color: #FFF;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  max-width: unset;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.teaser.block > .foreground > .text > .cta > a.button::after {
+  content: "→";
+  text-decoration: none;
+}
+
+.teaser.block.dark > .foreground > .text > .cta > a.button {
+  color: #8b1a2c;
 }
 
   /* spacer */
