@@ -35,24 +35,27 @@ export default function decorate(block) {
     }
 
     // Link item — JCR-alphabetical order: icon, iconAlt, label, link.
-    // xwalk skips empty reference fields, so when no icon is set the cells
-    // shift left by one. Advance past the icon cell only if it has a picture.
-    let cellIdx = 0;
+    // xwalk skips ALL empty fields (both reference and text), so any field
+    // that has no value simply won't produce a cell. Detect by content type
+    // instead of fixed index so any combination of empty fields is handled.
     let picture = null;
-    let iconImg = null;
-    if (cells[cellIdx]?.querySelector('picture')) {
-      picture = cells[cellIdx].querySelector('picture');
-      iconImg = picture?.querySelector('img');
-      cellIdx += 1;
-    }
-    const iconAlt = (cells[cellIdx]?.textContent || '').trim();
-    const label = (cells[cellIdx + 1]?.textContent || '').trim();
-    const linkCell = cells[cellIdx + 2];
-    const href = linkCell?.querySelector('a')?.getAttribute('href')
-      || (linkCell?.textContent || '').trim()
-      || '#';
+    let label = '';
+    let href = '#';
 
-    if (iconImg && iconAlt) iconImg.alt = iconAlt;
+    cells.forEach((cell) => {
+      if (cell.querySelector('picture')) {
+        picture = cell.querySelector('picture');
+      } else if (cell.querySelector('a')) {
+        href = cell.querySelector('a').getAttribute('href') || '#';
+      } else {
+        const text = (cell.textContent || '').trim();
+        if (text && (text.startsWith('/') || /^https?:\/\//.test(text))) {
+          href = text;
+        } else if (text && !label) {
+          label = text;
+        }
+      }
+    });
 
     const li = document.createElement('li');
     li.className = 'xcel-quick-links-item';
