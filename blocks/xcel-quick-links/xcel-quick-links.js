@@ -39,26 +39,23 @@ export default function decorate(block) {
     // that has no value simply won't produce a cell. Detect by content type
     // instead of fixed index so any combination of empty fields is handled.
     let picture = null;
-    let iconImg = null;
     let label = '';
     let href = '#';
 
-    for (const cell of cells) {
+    cells.forEach((cell) => {
       if (cell.querySelector('picture')) {
         picture = cell.querySelector('picture');
-        iconImg = picture.querySelector('img');
       } else if (cell.querySelector('a')) {
         href = cell.querySelector('a').getAttribute('href') || '#';
       } else {
         const text = (cell.textContent || '').trim();
-        if (!text) continue;
-        if (text.startsWith('/') || /^https?:\/\//.test(text)) {
+        if (text && (text.startsWith('/') || /^https?:\/\//.test(text))) {
           href = text;
-        } else if (!label) {
+        } else if (text && !label) {
           label = text;
         }
       }
-    }
+    });
 
     const li = document.createElement('li');
     li.className = 'xcel-quick-links-item';
