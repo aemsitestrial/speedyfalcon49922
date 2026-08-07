@@ -82,6 +82,13 @@
           "label": "Card Heading",
           "valueType": "string",
           "value": "Residential Customers"
+        },
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Card Image",
+          "valueType": "string",
+          "value": ""
         }
       ]
     }

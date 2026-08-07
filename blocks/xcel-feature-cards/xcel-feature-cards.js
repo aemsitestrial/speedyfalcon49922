@@ -3,18 +3,19 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 /*
  * xcel-feature-cards
  * A section heading + optional intro, followed by a responsive grid of
- * feature cards (heading + description + CTA link). Handles 2-up, 3-up and
- * 4-up layouts automatically via a responsive auto-fit grid.
+ * feature cards (optional image on top, heading + description + CTA link).
+ * Handles 2-up, 3-up and 4-up layouts automatically via a responsive
+ * auto-fit grid.
  *
  * Universal Editor model (container + repeatable card items):
  *   - Container fields: heading (text), intro (text) -> the first row.
  *   - Each card item fields (JCR-alphabetical): ctaText, ctaLink, description,
- *     heading. Cells are therefore detected by content type rather than a
- *     fixed position so the block is resilient to field ordering.
+ *     heading, image. Image detected by querySelector('picture') — resilient
+ *     to field ordering.
  */
 function decorateCard(row) {
   // xwalk renders one cell per model field in JCR-alphabetical order:
-  //   [0] ctaText, [1] ctaLink, [2] description, [3] heading
+  //   [0] ctaText, [1] ctaLink, [2] description, [3] heading, [4] image
   const cells = [...row.children];
   const ctaText = (cells[0]?.textContent || '').trim();
   const ctaLinkCell = cells[1];
@@ -25,18 +26,30 @@ function decorateCard(row) {
   li.className = 'xcel-feature-card';
   moveInstrumentation(row, li);
 
+  // Image: detect by picture element from the image reference field (cells[4])
+  const pictureEl = row.querySelector('picture');
+  if (pictureEl) {
+    const imgWrapper = document.createElement('div');
+    imgWrapper.className = 'xcel-feature-card-image';
+    imgWrapper.append(pictureEl);
+    li.append(imgWrapper);
+  }
+
+  const content = document.createElement('div');
+  content.className = 'xcel-feature-card-content';
+
   if (headingText) {
     const h = document.createElement('h3');
     h.className = 'xcel-feature-card-heading';
     h.textContent = headingText;
-    li.append(h);
+    content.append(h);
   }
 
   if (descCell && descCell.textContent.trim()) {
     const body = document.createElement('div');
     body.className = 'xcel-feature-card-body';
     while (descCell.firstChild) body.append(descCell.firstChild);
-    li.append(body);
+    content.append(body);
   }
 
   // CTA link: prefer an authored anchor in the ctaLink cell; fall back to its
@@ -50,9 +63,10 @@ function decorateCard(row) {
     cta.className = 'xcel-feature-card-cta';
     cta.href = href;
     cta.textContent = ctaText || (anchor ? anchor.textContent.trim() : '') || 'Learn More';
-    li.append(cta);
+    content.append(cta);
   }
 
+  li.append(content);
   return li;
 }
 
