@@ -134,3 +134,35 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Media Object variant — cream icon square LEFT, text RIGHT */
+.xcel-feature-cards.media-object .xcel-feature-cards-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.xcel-feature-cards.media-object .xcel-feature-card {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.xcel-feature-cards.media-object .xcel-feature-card-image {
+  width: 80px;
+  min-width: 80px;
+  height: 80px;
+  aspect-ratio: auto;
+  background-color: #f5ede8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.xcel-feature-cards.media-object .xcel-feature-card-image img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.xcel-feature-cards.media-object .xcel-feature-card-content {
+  padding: 12px 16px;
+}

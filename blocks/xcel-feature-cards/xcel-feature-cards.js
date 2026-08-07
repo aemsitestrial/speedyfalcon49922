@@ -8,10 +8,11 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  * auto-fit grid.
  *
  * Universal Editor model (container + repeatable card items):
- *   - Container fields: heading (text), intro (text) -> the first row.
+ *   - Container fields (JCR-alphabetical): heading, intro, variant.
  *   - Each card item fields (JCR-alphabetical): ctaText, ctaLink, description,
  *     heading, image. Image detected by querySelector('picture') — resilient
  *     to field ordering.
+ *   - variant = "media-object" adds CSS class; JS/CSS switch to icon-left layout.
  */
 function decorateCard(row) {
   // xwalk renders one cell per model field in JCR-alphabetical order:
@@ -90,6 +91,16 @@ export default function decorate(block) {
     const hasLink = !!row.querySelector('a');
 
     if (!hasLink && cells.length <= 2 && grid.childElementCount === 0) {
+      const cellText = (cells[0]?.textContent || '').trim();
+
+      // Variant field (JCR-alphabetical: heading < intro < variant).
+      // Must be checked before the heading/intro fallback so the value
+      // "media-object" is never mistaken for intro text.
+      if (cellText === 'cards' || cellText === 'media-object') {
+        if (cellText === 'media-object') block.classList.add('media-object');
+        return;
+      }
+
       if (!headingSet) {
         const heading = (cells[0]?.textContent || '').trim();
         if (heading) {
