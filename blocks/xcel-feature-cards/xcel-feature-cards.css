@@ -146,9 +146,9 @@
 }
 
 .xcel-feature-card-icon .xcel-feature-card-image {
-  width: 11rem;
-  min-width: 11rem;
-  height: 11rem;
+  width: 13rem;
+  min-width: 13rem;
+  height: 13rem;
   aspect-ratio: auto;
   background-color: #f5ede8;
   display: flex;
@@ -167,8 +167,8 @@
 }
 
 .xcel-feature-card-icon .xcel-feature-card-image img {
-  width: 7rem;
-  height: 7rem;
+  width: 8rem;
+  height: 8rem;
   object-fit: contain;
 }
 
@@ -176,11 +176,11 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 16px 20px;
+  padding: 24px 28px;
 }
 
 .xcel-feature-card-icon .xcel-feature-card-heading {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.18em;
   border-left: none;
@@ -208,9 +208,9 @@
 }
 
 .xcel-feature-cards.media-object .xcel-feature-card-image {
-  width: 11rem;
-  min-width: 11rem;
-  height: 11rem;
+  width: 13rem;
+  min-width: 13rem;
+  height: 13rem;
   aspect-ratio: auto;
   background-color: #f5ede8;
   display: flex;
@@ -220,17 +220,17 @@
 }
 
 .xcel-feature-cards.media-object .xcel-feature-card-image img {
-  width: 7rem;
-  height: 7rem;
+  width: 8rem;
+  height: 8rem;
   object-fit: contain;
 }
 
 .xcel-feature-cards.media-object .xcel-feature-card-content {
-  padding: 16px 20px;
+  padding: 24px 28px;
 }
 
 .xcel-feature-cards.media-object .xcel-feature-card-heading {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.18em;
   border-left: none;
