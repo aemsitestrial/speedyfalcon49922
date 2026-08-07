@@ -1,3 +1,14 @@
+/* Override Frescopa footer boilerplate constraints */
+footer .footer > div:has(.xcel-footer) {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+footer .section:has(.xcel-footer) {
+  display: block;
+}
+
 .xcel-footer {
   width: 100%;
   background-color: #1a1a2e;
