@@ -6137,6 +6137,23 @@
         "label": "Intro Text",
         "valueType": "string",
         "value": ""
+      },
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Card Layout",
+        "valueType": "string",
+        "value": "cards",
+        "options": [
+          {
+            "name": "Cards (Photo Top)",
+            "value": "cards"
+          },
+          {
+            "name": "Media Object (Icon Left)",
+            "value": "media-object"
+          }
+        ]
       }
     ]
   },
