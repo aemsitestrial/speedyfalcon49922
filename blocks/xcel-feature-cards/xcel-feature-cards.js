@@ -119,13 +119,11 @@ export default function decorate(block) {
           p.textContent = intro;
           header.append(p);
         }
-      } else {
-        if (cellText) {
-          const p = document.createElement('p');
-          p.className = 'xcel-feature-cards-intro';
-          p.textContent = cellText;
-          header.append(p);
-        }
+      } else if (cellText) {
+        const p = document.createElement('p');
+        p.className = 'xcel-feature-cards-intro';
+        p.textContent = cellText;
+        header.append(p);
       }
       return;
     }
