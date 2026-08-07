@@ -457,7 +457,7 @@ main > .section:first-of-type {
 
 main > .section:empty,
 main > .section > div:empty {
-  min-height: 24px;
+  min-height: 2px;
   margin: 0;
 }
 
