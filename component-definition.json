@@ -296,6 +296,21 @@
           }
         },
         {
+          "title": "Xcel Feature Card (Icon)",
+          "id": "xcel-feature-card-icon",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Xcel Feature Card (Icon)",
+                  "model": "xcel-feature-card-icon"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Xcel Video Feature",
           "id": "xcel-video-feature",
           "plugins": {
