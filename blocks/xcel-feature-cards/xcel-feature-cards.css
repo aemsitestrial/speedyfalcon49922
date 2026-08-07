@@ -22,8 +22,9 @@
 .xcel-feature-cards-heading {
   margin: 0 0 12px;
   color: #1a1a2e;
-  font-size: 1.875rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 .xcel-feature-cards-intro {
@@ -146,9 +147,9 @@
 }
 
 .xcel-feature-cards.media-object .xcel-feature-card-image {
-  width: 120px;
-  min-width: 120px;
-  height: 120px;
+  width: 11rem;
+  min-width: 11rem;
+  height: 11rem;
   aspect-ratio: auto;
   background-color: #f5ede8;
   display: flex;
@@ -158,8 +159,8 @@
 }
 
 .xcel-feature-cards.media-object .xcel-feature-card-image img {
-  width: 72px;
-  height: 72px;
+  width: 7rem;
+  height: 7rem;
   object-fit: contain;
 }
 

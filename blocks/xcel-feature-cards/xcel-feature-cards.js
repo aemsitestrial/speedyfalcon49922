@@ -81,32 +81,34 @@ export default function decorate(block) {
   const grid = document.createElement('ul');
   grid.className = 'xcel-feature-cards-grid';
 
-  // xwalk may render each container field as its own row rather than as cells
-  // in a single row. Treat every link-less row with ≤2 cells that appears
-  // before the first card as part of the header section.
+  // xwalk renders container fields as separate 1-cell rows; AEM delivery may
+  // combine all 3 container fields (heading, intro, variant) into one 3-cell
+  // row. Accept ≤3 cells so both delivery modes are handled. Card items always
+  // have 5 cells so they are never mistaken for header rows.
   let headingSet = false;
 
   rows.forEach((row) => {
     const cells = [...row.children];
     const hasLink = !!row.querySelector('a');
 
-    if (!hasLink && cells.length <= 2 && grid.childElementCount === 0) {
+    if (!hasLink && cells.length <= 3 && grid.childElementCount === 0) {
       const cellText = (cells[0]?.textContent || '').trim();
 
-      // Variant field (JCR-alphabetical: heading < intro < variant).
-      // Must be checked before the heading/intro fallback so the value
-      // "media-object" is never mistaken for intro text.
+      // When AEM delivers all 3 container fields in one row, variant is cells[2].
+      // When xwalk delivers each field as its own row, variant is cells[0].
+      const variantCell = (cells[2]?.textContent || '').trim();
+      if (variantCell === 'media-object') block.classList.add('media-object');
+
       if (cellText === 'cards' || cellText === 'media-object') {
         if (cellText === 'media-object') block.classList.add('media-object');
         return;
       }
 
       if (!headingSet) {
-        const heading = (cells[0]?.textContent || '').trim();
-        if (heading) {
+        if (cellText) {
           const h = document.createElement('h2');
           h.className = 'xcel-feature-cards-heading';
-          h.textContent = heading;
+          h.textContent = cellText;
           header.append(h);
           headingSet = true;
         }
@@ -118,11 +120,10 @@ export default function decorate(block) {
           header.append(p);
         }
       } else {
-        const intro = (cells[0]?.textContent || '').trim();
-        if (intro) {
+        if (cellText) {
           const p = document.createElement('p');
           p.className = 'xcel-feature-cards-intro';
-          p.textContent = intro;
+          p.textContent = cellText;
           header.append(p);
         }
       }
