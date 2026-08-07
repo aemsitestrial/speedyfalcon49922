@@ -136,6 +136,58 @@
   }
 }
 
+/* Icon Card (xcel-feature-card-icon) — cream square LEFT, text RIGHT */
+.xcel-feature-card-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  border: 1px solid #e0e0e6;
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.xcel-feature-card-icon .xcel-feature-card-image {
+  width: 11rem;
+  min-width: 11rem;
+  height: 11rem;
+  aspect-ratio: auto;
+  background-color: #f5ede8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.xcel-feature-card-icon .xcel-feature-card-image img {
+  width: 7rem;
+  height: 7rem;
+  object-fit: contain;
+}
+
+.xcel-feature-card-icon .xcel-feature-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px 20px;
+}
+
+.xcel-feature-card-icon .xcel-feature-card-heading {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.xcel-feature-cards-grid:has(.xcel-feature-card-icon) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (width <= 680px) {
+  .xcel-feature-cards-grid:has(.xcel-feature-card-icon) {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Media Object variant — cream icon square LEFT, text RIGHT */
 .xcel-feature-cards.media-object .xcel-feature-cards-grid {
   grid-template-columns: repeat(2, 1fr);

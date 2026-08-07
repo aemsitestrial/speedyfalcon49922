@@ -30,6 +30,21 @@
           }
         }
       }
+    },
+    {
+      "title": "Xcel Feature Card (Icon)",
+      "id": "xcel-feature-card-icon",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Xcel Feature Card (Icon)",
+              "model": "xcel-feature-card-icon"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
@@ -102,13 +117,54 @@
           "value": ""
         }
       ]
+    },
+    {
+      "id": "xcel-feature-card-icon",
+      "fields": [
+        {
+          "component": "text",
+          "name": "ctaText",
+          "label": "CTA Label",
+          "valueType": "string",
+          "value": "Learn More"
+        },
+        {
+          "component": "text",
+          "name": "ctaLink",
+          "label": "CTA Link URL",
+          "valueType": "string",
+          "value": "/"
+        },
+        {
+          "component": "richtext",
+          "name": "description",
+          "label": "Description",
+          "valueType": "string",
+          "value": "<p>Describe this feature.</p>"
+        },
+        {
+          "component": "text",
+          "name": "heading",
+          "label": "Card Heading",
+          "valueType": "string",
+          "value": "Card Title"
+        },
+        {
+          "component": "reference",
+          "name": "icon",
+          "label": "Icon Image",
+          "valueType": "string",
+          "value": ""
+        }
+      ]
     }
   ],
   "filters": [
     {
       "id": "xcel-feature-cards",
       "components": [
-        "xcel-feature-card"
+        "xcel-feature-card",
+        "xcel-feature-card-icon"
       ]
     }
   ]

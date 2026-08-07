@@ -105,7 +105,8 @@
   {
     "id": "xcel-feature-cards",
     "components": [
-      "xcel-feature-card"
+      "xcel-feature-card",
+      "xcel-feature-card-icon"
     ]
   },
   {

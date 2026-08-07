@@ -9,12 +9,13 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  *
  * Universal Editor model (container + repeatable card items):
  *   - Container fields (JCR-alphabetical): heading, intro, variant.
- *   - Each card item fields (JCR-alphabetical): ctaText, ctaLink, description,
- *     heading, image. Image detected by querySelector('picture') — resilient
- *     to field ordering.
- *   - variant = "media-object" adds CSS class; JS/CSS switch to icon-left layout.
+ *   - xcel-feature-card fields (JCR-alphabetical): ctaText, ctaLink, description,
+ *     heading, image. Image detected by querySelector('picture').
+ *   - xcel-feature-card-icon fields: same but with icon instead of image.
+ *     isIconCard flag selects icon-left layout; detected via data-aue-model
+ *     attribute (UE canvas) or container .media-object class (published page).
  */
-function decorateCard(row) {
+function decorateCard(row, isIconCard) {
   // xwalk renders one cell per model field in JCR-alphabetical order:
   //   [0] ctaText, [1] ctaLink, [2] description, [3] heading, [4] image
   const cells = [...row.children];
@@ -24,7 +25,7 @@ function decorateCard(row) {
   const headingText = (cells[3]?.textContent || '').trim();
 
   const li = document.createElement('li');
-  li.className = 'xcel-feature-card';
+  li.className = isIconCard ? 'xcel-feature-card-icon' : 'xcel-feature-card';
   moveInstrumentation(row, li);
 
   // Image: detect by picture element from the image reference field (cells[4])
@@ -128,7 +129,9 @@ export default function decorate(block) {
       return;
     }
 
-    grid.append(decorateCard(row));
+    const isIconCard = row.dataset.aueModel === 'xcel-feature-card-icon'
+      || block.classList.contains('media-object');
+    grid.append(decorateCard(row, isIconCard));
   });
 
   if (header.childElementCount) block.append(header);
