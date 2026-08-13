@@ -1,3 +1,7 @@
+// GraphQL persisted query endpoint — requires a speedyfalcon49922 GraphQL endpoint
+// on AEM Author (admin access needed to create it). Falls back to STATE_ORDER if unavailable.
+const GRAPHQL_ENDPOINT = 'https://publish-p153710-e1614654.adobeaemcloud.com/graphql/execute.json/speedyfalcon49922/service-areas';
+
 const STATE_ORDER = [
   'Colorado', 'Michigan', 'Minnesota', 'New Mexico',
   'North Dakota', 'South Dakota', 'Texas', 'Wisconsin',
@@ -84,7 +88,14 @@ function isLink(text) {
   return text.startsWith('/') || text.startsWith('http');
 }
 
-export default function decorate(block) {
+async function fetchServiceAreas() {
+  const response = await fetch(GRAPHQL_ENDPOINT).catch(() => null);
+  if (!response || !response.ok) return null;
+  const json = await response.json().catch(() => null);
+  return json?.data?.serviceAreaList?.items || null;
+}
+
+export default async function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
 
   // Detect heading: first row is heading if its value is not a URL.
@@ -107,14 +118,24 @@ export default function decorate(block) {
   const grid = document.createElement('ul');
   grid.className = 'state-selector-grid';
 
-  STATE_ORDER.forEach((name, i) => {
-    const link = isLink(getLastCellText(linkRows[i]))
-      ? getLastCellText(linkRows[i])
-      : '/';
-    const li = document.createElement('li');
-    li.appendChild(buildStateCard(name, link));
-    grid.appendChild(li);
-  });
+  const gqlItems = await fetchServiceAreas();
+
+  if (gqlItems && gqlItems.length > 0) {
+    gqlItems.forEach(({ name, link }) => {
+      const li = document.createElement('li');
+      li.appendChild(buildStateCard(name, link || '/'));
+      grid.appendChild(li);
+    });
+  } else {
+    STATE_ORDER.forEach((name, i) => {
+      const link = isLink(getLastCellText(linkRows[i]))
+        ? getLastCellText(linkRows[i])
+        : '/';
+      const li = document.createElement('li');
+      li.appendChild(buildStateCard(name, link));
+      grid.appendChild(li);
+    });
+  }
 
   block.innerHTML = '';
   block.appendChild(heading);
