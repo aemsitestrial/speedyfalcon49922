@@ -300,3 +300,89 @@ Current design (icon tiles) must be **completely replaced** to match real site:
 | A standard UI element (button, text, title, image) | **Extend a Core Component** — copy the existing model, change the `id` |
 
 Building a block when a core component exists causes **silent render failure** in the UE canvas — block JS decorators do not run natively in UE.
+
+---
+
+## Skills & Agents — Automation Strategy
+
+### Why build Skills/Agents for this project
+
+AEM Author UI operations (creating Content Fragment models, CF instances, persisted queries, page creation) require manual browser clicks. These are repetitive, time-consuming, and error-prone. A Claude Code Skill or Agent can replace these manual steps by calling AEM REST APIs directly — **no browser needed**.
+
+**Rule:** If an AEM task is repeatable (same steps, different data), build a Skill/Agent for it first. Then use the agent instead of the UI.
+
+---
+
+### AEM REST API Auth
+
+AEM Author always requires authentication — even on sandbox/trial instances (returns `401` without credentials).
+
+```
+AEM Author:  https://author-p153710-e1614654.adobeaemcloud.com  → 401 (needs auth)
+AEM Publish: https://publish-p153710-e1614654.adobeaemcloud.com → public (no auth)
+```
+
+**Auth pattern for agents:**
+- Store credentials in `.env` file at repo root (never committed — already in `.gitignore`)
+- Agent reads `AEM_USER` and `AEM_PASSWORD` from env vars
+- All `curl` calls use `-u $AEM_USER:$AEM_PASSWORD`
+
+---
+
+### XA1–XA6 Automation Opportunity Analysis
+
+| Activity | Manual Task | Can be Automated? | Agent Type |
+|---|---|---|---|
+| XA1 — Create page | Click in AEM Sites UI | ✅ Yes | AEM Sites REST API (`POST /api/sites/`) |
+| XA2 — State Selector | Hardcoded JS array | ✅ Yes | CF instances → GraphQL fetch (XA6 agent) |
+| XA3 — CTA Banner | Set fields in UE | ✅ Partial | AEM Assets API (content population) |
+| XA4 — Header nav | Edit `/nav` doc in Author | ✅ Partial | JCR write API |
+| XA5 — Footer | Edit `/footer` doc in Author | ✅ Partial | JCR write API |
+| XA6 — CF + GraphQL | Create model, instances, query | ✅ Yes — **build this first** | CF REST API + GraphQL persist API |
+
+**Priority:** Build XA6 agent first — it solves XA2 (State Selector data) at the same time.
+
+---
+
+### XA6 Agent Design
+
+**Name:** `aem-cf-agent` (or invoke as a Claude Code skill)
+
+**What it does:**
+1. Creates a Content Fragment Model on AEM Author via REST API
+2. Creates CF instances (one per state) with provided data
+3. Creates a persisted GraphQL query on AEM Author
+4. Returns the published GraphQL endpoint URL for the EDS JS block to consume
+
+**Inputs (from a config file `scripts/cf-config.json`):**
+```json
+{
+  "modelName": "Service Area",
+  "modelPath": "/conf/speedyfalcon49922/settings/dam/cfm/models",
+  "instancesPath": "/content/dam/speedyfalcon49922/service-areas",
+  "queryName": "service-areas",
+  "states": [
+    { "name": "Colorado", "abbr": "CO", "link": "/" },
+    { "name": "Minnesota", "abbr": "MN", "link": "/" }
+  ]
+}
+```
+
+**Output:**
+```
+Published query endpoint:
+https://publish-p153710-e1614654.adobeaemcloud.com/graphql/execute.json/speedyfalcon49922/service-areas
+```
+
+**Files to create:**
+- `scripts/cf-config.json` — state data input
+- `scripts/create-cf-model.sh` — creates the CF Model via REST API
+- `scripts/create-cf-instances.sh` — creates one CF instance per state
+- `scripts/create-persisted-query.sh` — saves the GraphQL query
+
+**Order of execution:**
+```
+Build agent → Run agent → Verify on Publish GraphQL → Update State Selector JS
+```
+
+**Do NOT start XA6 manually.** Build the agent first, then XA6 is just running the scripts.
