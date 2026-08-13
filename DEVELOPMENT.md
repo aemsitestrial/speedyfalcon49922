@@ -303,6 +303,139 @@ Building a block when a core component exists causes **silent render failure** i
 
 ---
 
+## Existing Skills & Agent — How to Use
+
+This project already has 1 Agent and 4 Skills pre-built inside `.claude/`.
+These are loaded automatically by Claude Code when you are in this repo.
+
+---
+
+### What is a Skill?
+
+A **Skill** is a set of instructions that tells Claude exactly how to handle a specific type of task — like building a block or checking quality before a PR. Instead of explaining the rules every time, Claude reads the skill and follows it automatically.
+
+### What is an Agent?
+
+An **Agent** is a specialist that combines multiple skills and runs them in the right order. Think of it as a senior developer who already knows all the project rules.
+
+---
+
+### The 1 Agent
+
+#### `eds-ue-specialist`
+**What it does:** The master agent for all EDS/UE work. Automatically uses all 4 skills in the correct order.
+
+**When to use it:**
+- Building a new block from scratch
+- Refactoring an existing block
+- Updating a model + rebuilding JSON + linting — all in one go
+
+**How to use — step by step:**
+
+```
+Step 1: Open Claude Code in this project folder (you are already here)
+Step 2: Type your request naturally, for example:
+        "Build a new xcel-alert block with a message and color field"
+Step 3: Claude will automatically use the eds-ue-specialist agent
+        — OR — you can explicitly trigger it by saying:
+        "Use the eds-ue-specialist to build this block"
+Step 4: Claude reads the agent rules, then works through all 4 skills in order
+Step 5: At the end you get: JS + CSS + JSON + lint check + summary
+```
+
+> **Rule of thumb:** Any time you say "build a block" or "create a component" in this repo — the eds-ue-specialist should run.
+
+---
+
+### The 4 Skills
+
+#### Skill 1 — `eds-ue-project-setup`
+**What it does:** Checks that the project is correctly set up — required files exist, npm dependencies installed, local dev server command ready.
+
+**When to use:**
+- First time setting up on a new machine
+- After cloning the repo fresh
+- If something feels broken and you're not sure why
+
+**How to use:**
+```
+Say: "Check if this project is set up correctly"
+OR:  "Run the eds-ue-project-setup skill"
+```
+
+---
+
+#### Skill 2 — `eds-ue-block-development`
+**What it does:** Enforces correct block structure when building or editing blocks. Makes sure JS + CSS + JSON are all present, CSS is block-scoped, and the decorator handles missing content gracefully.
+
+**When to use:**
+- Adding JS logic to an existing block
+- Refactoring CSS for a block
+- Adding a new field to a block's JS decorator
+
+**How to use:**
+```
+Say: "Update the xcel-quick-links block CSS — use the block development skill"
+OR:  Claude automatically applies this when you ask to edit a block
+```
+
+---
+
+#### Skill 3 — `eds-ue-content-modeling`
+**What it does:** Handles all UE model file changes — updating `_block.json`, running `npm run build:json` to rebuild the 3 generated files, and keeping models clean and author-friendly.
+
+**When to use:**
+- Adding a new field to a block model
+- Creating a new child component (like xcel-feature-card-icon)
+- After any change to `_*.json` files
+
+**How to use:**
+```
+Say: "Add a 'backgroundColor' field to the xcel-cta-banner model"
+     Claude uses this skill automatically for model changes
+OR:  "Use content modeling skill to update the xcel-hero model"
+```
+
+---
+
+#### Skill 4 — `eds-ue-quality-and-publishing`
+**What it does:** Quality gate before any PR. Runs `npm run lint`, checks for performance issues, verifies model-to-markup consistency, and gives you a release readiness summary.
+
+**When to use:**
+- **Before every PR** — always run this before opening a pull request
+- After a session of changes to make sure nothing is broken
+- Before publishing to the live site
+
+**How to use:**
+```
+Say: "Run quality check before I open a PR"
+OR:  "Use the quality and publishing skill to check my changes"
+Claude runs: npm run lint → reviews changes → gives go/no-go
+```
+
+---
+
+### Quick Reference — Which to Use When
+
+| Situation | Use This |
+|---|---|
+| Building a brand new block | `eds-ue-specialist` (agent) |
+| Editing JS or CSS of existing block | `eds-ue-block-development` (skill 2) |
+| Adding/changing model fields | `eds-ue-content-modeling` (skill 3) |
+| Before opening a PR | `eds-ue-quality-and-publishing` (skill 4) |
+| Fresh machine setup or something broken | `eds-ue-project-setup` (skill 1) |
+| Not sure — just describe the task | `eds-ue-specialist` handles it |
+
+---
+
+### Skills We Still Need to Build (Planned)
+
+| Skill/Agent | Purpose | Status |
+|---|---|---|
+| `aem-cf-agent` | Create CF Models, CF instances, persisted GraphQL queries via REST API — no browser needed | ⏳ Planned for XA6 |
+
+---
+
 ## Skills & Agents — Automation Strategy
 
 ### Why build Skills/Agents for this project
