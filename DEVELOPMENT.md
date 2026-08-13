@@ -325,106 +325,123 @@ An **Agent** is a specialist that combines multiple skills and runs them in the 
 #### `eds-ue-specialist`
 **What it does:** The master agent for all EDS/UE work. Automatically uses all 4 skills in the correct order.
 
-**When to use it:**
-- Building a new block from scratch
-- Refactoring an existing block
-- Updating a model + rebuilding JSON + linting — all in one go
-
-**How to use — step by step:**
-
+**Workflow — when to trigger it:**
 ```
-Step 1: Open Claude Code in this project folder (you are already here)
-Step 2: Type your request naturally, for example:
-        "Build a new xcel-alert block with a message and color field"
-Step 3: Claude will automatically use the eds-ue-specialist agent
-        — OR — you can explicitly trigger it by saying:
-        "Use the eds-ue-specialist to build this block"
-Step 4: Claude reads the agent rules, then works through all 4 skills in order
-Step 5: At the end you get: JS + CSS + JSON + lint check + summary
+1. You decide to build a new block      ← task starts here
+2. Say: "Build a new xcel-alert block"  ← you talk to Claude
+3. ← AGENT RUNS HERE →                  Claude uses eds-ue-specialist automatically
+4. Agent works through all 4 skills     ← JS + CSS + JSON + lint
+5. You get a full working block + summary ← done
 ```
 
-> **Rule of thumb:** Any time you say "build a block" or "create a component" in this repo — the eds-ue-specialist should run.
+> **Rule:** Any time you say "build a block" or "create a component" — eds-ue-specialist runs. You do not need to trigger it manually.
 
 ---
 
 ### The 4 Skills
 
 #### Skill 1 — `eds-ue-project-setup`
-**What it does:** Checks that the project is correctly set up — required files exist, npm dependencies installed, local dev server command ready.
+**What it does:** Checks that the project is correctly set up — required files exist, npm dependencies installed, local dev commands ready.
 
-**When to use:**
-- First time setting up on a new machine
-- After cloning the repo fresh
-- If something feels broken and you're not sure why
+**Workflow — when to trigger it:**
+```
+1. You open the repo on a new machine   ← or something feels broken
+2. Say: "Check if this project is set up correctly"
+3. ← SKILL 1 RUNS HERE →               Claude checks all required files + deps
+4. You get: ready-to-run confirmation   ← or a list of what's missing
+5. Fix anything missing, then start work
+```
 
-**How to use:**
-```
-Say: "Check if this project is set up correctly"
-OR:  "Run the eds-ue-project-setup skill"
-```
+> **Rule:** Only needed on first setup or when something is broken. You will rarely use this.
 
 ---
 
 #### Skill 2 — `eds-ue-block-development`
-**What it does:** Enforces correct block structure when building or editing blocks. Makes sure JS + CSS + JSON are all present, CSS is block-scoped, and the decorator handles missing content gracefully.
+**What it does:** Enforces correct block structure — JS + CSS + JSON all present, CSS scoped, decorator handles missing fields gracefully.
 
-**When to use:**
-- Adding JS logic to an existing block
-- Refactoring CSS for a block
-- Adding a new field to a block's JS decorator
+**Workflow — when to trigger it:**
+```
+1. We finish writing the block code     ← JS and CSS done
+2. Say: "Check the block structure is correct"
+3. ← SKILL 2 RUNS HERE →               Claude reviews JS + CSS + JSON
+4. Any issues flagged and fixed         ← missing file, leaked CSS, etc.
+5. Block is ready for quality check (Skill 4) before PR
+```
 
-**How to use:**
-```
-Say: "Update the xcel-quick-links block CSS — use the block development skill"
-OR:  Claude automatically applies this when you ask to edit a block
-```
+> **Rule:** Runs automatically during block building. You can also call it explicitly after editing a block's JS or CSS.
 
 ---
 
 #### Skill 3 — `eds-ue-content-modeling`
-**What it does:** Handles all UE model file changes — updating `_block.json`, running `npm run build:json` to rebuild the 3 generated files, and keeping models clean and author-friendly.
+**What it does:** Handles all UE model file changes — updates `_block.json`, runs `npm run build:json` to rebuild the 3 generated files.
 
-**When to use:**
-- Adding a new field to a block model
-- Creating a new child component (like xcel-feature-card-icon)
-- After any change to `_*.json` files
+**Workflow — when to trigger it:**
+```
+1. We add or change a field in a model  ← _block.json edited
+2. Say: "Rebuild the JSON models"
+   OR it runs automatically after any model change
+3. ← SKILL 3 RUNS HERE →               npm run build:json executes
+4. component-definition.json            ← rebuilt ✅
+   component-models.json                ← rebuilt ✅
+   component-filters.json               ← rebuilt ✅
+5. New field is now visible in UE palette
+```
 
-**How to use:**
-```
-Say: "Add a 'backgroundColor' field to the xcel-cta-banner model"
-     Claude uses this skill automatically for model changes
-OR:  "Use content modeling skill to update the xcel-hero model"
-```
+> **Rule:** Every time a `_*.json` model file changes — Skill 3 must run. Never skip this step or UE will not show the new field.
 
 ---
 
 #### Skill 4 — `eds-ue-quality-and-publishing`
-**What it does:** Quality gate before any PR. Runs `npm run lint`, checks for performance issues, verifies model-to-markup consistency, and gives you a release readiness summary.
+**What it does:** Quality gate before any PR. Runs `npm run lint`, checks for issues, gives a go/no-go.
 
-**When to use:**
-- **Before every PR** — always run this before opening a pull request
-- After a session of changes to make sure nothing is broken
-- Before publishing to the live site
+**Workflow — when to trigger it:**
+```
+1. We build / make changes              ← coding happens here
+2. We commit + push                     ← git work happens here
+3. Say: "Run quality check"             ← YOU SAY THIS BEFORE OPENING PR
+4. ← SKILL 4 RUNS HERE →               npm run lint executes
+5. All issues reported and fixed        ← CSS errors, ESLint errors caught
+6. Open PR on GitHub                    ← only after Skill 4 says OK
+7. Merge to main
+```
 
-**How to use:**
+> **Rule:** Every single PR — no exceptions. Say "run quality check" before going to GitHub to open a PR.
+
+---
+
+### Planned Agent
+
+#### `aem-cf-agent` ⏳ (to be built for XA6)
+**What it does:** Creates Content Fragment Models, CF instances, and persisted GraphQL queries on AEM Author — via REST API, no browser needed.
+
+**Workflow — when to trigger it (once built):**
 ```
-Say: "Run quality check before I open a PR"
-OR:  "Use the quality and publishing skill to check my changes"
-Claude runs: npm run lint → reviews changes → gives go/no-go
+1. You need new content in AEM          ← state data, CF model, etc.
+2. Update scripts/cf-config.json        ← add your state data
+3. Say: "Run the aem-cf-agent"
+4. ← AGENT RUNS HERE →                 Claude calls AEM REST API
+5. CF Model created on AEM Author       ← automatically ✅
+   CF instances created (one per state) ← automatically ✅
+   Persisted query saved                ← automatically ✅
+6. Claude gives you the GraphQL endpoint URL
+7. EDS block JS is updated to fetch from that URL
 ```
+
+> **Rule:** Never create Content Fragments manually in AEM UI once this agent exists. Always run the agent — it is faster, repeatable, and error-free.
 
 ---
 
 ### Quick Reference — Which to Use When
 
-| Situation | Use This |
-|---|---|
-| Building a brand new block | `eds-ue-specialist` (agent) |
-| Editing JS or CSS of existing block | `eds-ue-block-development` (skill 2) |
-| Adding/changing model fields | `eds-ue-content-modeling` (skill 3) |
-| Before opening a PR | `eds-ue-quality-and-publishing` (skill 4) |
-| Fresh machine setup or something broken | `eds-ue-project-setup` (skill 1) |
-| Not sure — just describe the task | `eds-ue-specialist` handles it |
+| Situation | Use This | When |
+|---|---|---|
+| Building a brand new block | `eds-ue-specialist` (agent) | When task starts |
+| Editing JS or CSS of existing block | `eds-ue-block-development` (skill 2) | After editing |
+| Adding/changing model fields | `eds-ue-content-modeling` (skill 3) | After `_*.json` changes |
+| **Before opening a PR** | **`eds-ue-quality-and-publishing` (skill 4)** | **Every PR, no exceptions** |
+| Fresh machine setup or something broken | `eds-ue-project-setup` (skill 1) | Rarely |
+| Creating AEM Content Fragments | `aem-cf-agent` (planned) | XA6 and beyond |
+| Not sure — just describe the task | `eds-ue-specialist` handles it | Anytime |
 
 ---
 
