@@ -1,6 +1,7 @@
-// GraphQL persisted query endpoint — requires a speedyfalcon49922 GraphQL endpoint
-// on AEM Author (admin access needed to create it). Falls back to STATE_ORDER if unavailable.
-const GRAPHQL_ENDPOINT = 'https://publish-p153710-e1614654.adobeaemcloud.com/graphql/execute.json/speedyfalcon49922/service-areas';
+// Mock GraphQL response served from EDS repo (same shape as AEM persisted query response).
+// Swap this URL for the real AEM persisted query endpoint when AEM Author access is restored:
+// https://publish-p153710-e1614654.adobeaemcloud.com/graphql/execute.json/speedyfalcon49922/service-areas
+const GRAPHQL_ENDPOINT = '/data/service-areas.json';
 
 const STATE_ORDER = [
   'Colorado', 'Michigan', 'Minnesota', 'New Mexico',
