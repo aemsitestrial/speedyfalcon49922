@@ -2,12 +2,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 /*
  * xcel-quick-links
- * "Welcome! Get Started Here" — an optional heading followed by a row of
- * compact icon quick-link tiles.
- *
- * Universal Editor model (container + repeatable link items):
- *   - Container field: heading (text) -> the first row (no link).
- *   - Each link item: icon (image, optional) + label (text) + link (url).
+ * Dark crimson band with "Welcome! Get Started Here" heading and 4 white outlined buttons.
  */
 export default function decorate(block) {
   const rows = [...block.children];
@@ -22,7 +17,7 @@ export default function decorate(block) {
   rows.forEach((row) => {
     const cells = [...row.children];
 
-    // The container heading is a single-cell row with no link and no image.
+    // Container heading: single cell, no link, no image.
     if (cells.length === 1 && !row.querySelector('a, picture')) {
       const text = (cells[0]?.textContent || '').trim();
       if (text) {
@@ -34,18 +29,22 @@ export default function decorate(block) {
       return;
     }
 
-    // Link item — xwalk cells in JCR-alphabetical model order:
-    //   [0] icon (image), [1] iconAlt, [2] label, [3] link
-    const picture = cells[0]?.querySelector('picture');
-    const iconImg = cells[0]?.querySelector('img');
-    const iconAlt = (cells[1]?.textContent || '').trim();
-    const label = (cells[2]?.textContent || '').trim();
-    const linkCell = cells[3];
-    const href = linkCell?.querySelector('a')?.getAttribute('href')
-      || (linkCell?.textContent || '').trim()
-      || '#';
+    // Link item — detect by content type (xwalk skips empty fields so indices shift).
+    let label = '';
+    let href = '#';
 
-    if (iconImg && iconAlt) iconImg.setAttribute('alt', iconAlt);
+    cells.forEach((cell) => {
+      if (cell.querySelector('a')) {
+        href = cell.querySelector('a').getAttribute('href') || '#';
+      } else {
+        const text = (cell.textContent || '').trim();
+        if (text && (text.startsWith('/') || /^https?:\/\//.test(text))) {
+          href = text;
+        } else if (text && !label) {
+          label = text;
+        }
+      }
+    });
 
     const li = document.createElement('li');
     li.className = 'xcel-quick-links-item';
@@ -55,17 +54,10 @@ export default function decorate(block) {
     link.className = 'xcel-quick-links-link';
     link.href = href;
 
-    if (picture) {
-      const icon = document.createElement('span');
-      icon.className = 'xcel-quick-links-icon';
-      icon.append(picture);
-      link.append(icon);
-    }
-
-    const text = document.createElement('span');
-    text.className = 'xcel-quick-links-label';
-    text.textContent = label;
-    link.append(text);
+    const span = document.createElement('span');
+    span.className = 'xcel-quick-links-label';
+    span.textContent = label;
+    link.append(span);
 
     li.append(link);
     list.append(li);

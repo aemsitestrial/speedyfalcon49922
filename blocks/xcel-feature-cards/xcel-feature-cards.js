@@ -3,18 +3,21 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 /*
  * xcel-feature-cards
  * A section heading + optional intro, followed by a responsive grid of
- * feature cards (heading + description + CTA link). Handles 2-up, 3-up and
- * 4-up layouts automatically via a responsive auto-fit grid.
+ * feature cards (optional image on top, heading + description + CTA link).
+ * Handles 2-up, 3-up and 4-up layouts automatically via a responsive
+ * auto-fit grid.
  *
  * Universal Editor model (container + repeatable card items):
- *   - Container fields: heading (text), intro (text) -> the first row.
- *   - Each card item fields (JCR-alphabetical): ctaText, ctaLink, description,
- *     heading. Cells are therefore detected by content type rather than a
- *     fixed position so the block is resilient to field ordering.
+ *   - Container fields (JCR-alphabetical): heading, intro, variant.
+ *   - xcel-feature-card fields (JCR-alphabetical): ctaText, ctaLink, description,
+ *     heading, image. Image detected by querySelector('picture').
+ *   - xcel-feature-card-icon fields: same but with icon instead of image.
+ *     isIconCard flag selects icon-left layout; detected via data-aue-model
+ *     attribute (UE canvas) or container .media-object class (published page).
  */
-function decorateCard(row) {
+function decorateCard(row, isIconCard) {
   // xwalk renders one cell per model field in JCR-alphabetical order:
-  //   [0] ctaText, [1] ctaLink, [2] description, [3] heading
+  //   [0] ctaText, [1] ctaLink, [2] description, [3] heading, [4] image
   const cells = [...row.children];
   const ctaText = (cells[0]?.textContent || '').trim();
   const ctaLinkCell = cells[1];
@@ -22,21 +25,33 @@ function decorateCard(row) {
   const headingText = (cells[3]?.textContent || '').trim();
 
   const li = document.createElement('li');
-  li.className = 'xcel-feature-card';
+  li.className = isIconCard ? 'xcel-feature-card-icon' : 'xcel-feature-card';
   moveInstrumentation(row, li);
+
+  // Image: detect by picture element from the image reference field (cells[4])
+  const pictureEl = row.querySelector('picture');
+  if (pictureEl) {
+    const imgWrapper = document.createElement('div');
+    imgWrapper.className = 'xcel-feature-card-image';
+    imgWrapper.append(pictureEl);
+    li.append(imgWrapper);
+  }
+
+  const content = document.createElement('div');
+  content.className = 'xcel-feature-card-content';
 
   if (headingText) {
     const h = document.createElement('h3');
     h.className = 'xcel-feature-card-heading';
     h.textContent = headingText;
-    li.append(h);
+    content.append(h);
   }
 
   if (descCell && descCell.textContent.trim()) {
     const body = document.createElement('div');
     body.className = 'xcel-feature-card-body';
     while (descCell.firstChild) body.append(descCell.firstChild);
-    li.append(body);
+    content.append(body);
   }
 
   // CTA link: prefer an authored anchor in the ctaLink cell; fall back to its
@@ -50,9 +65,10 @@ function decorateCard(row) {
     cta.className = 'xcel-feature-card-cta';
     cta.href = href;
     cta.textContent = ctaText || (anchor ? anchor.textContent.trim() : '') || 'Learn More';
-    li.append(cta);
+    content.append(cta);
   }
 
+  li.append(content);
   return li;
 }
 
@@ -66,30 +82,56 @@ export default function decorate(block) {
   const grid = document.createElement('ul');
   grid.className = 'xcel-feature-cards-grid';
 
-  rows.forEach((row, index) => {
+  // xwalk renders container fields as separate 1-cell rows; AEM delivery may
+  // combine all 3 container fields (heading, intro, variant) into one 3-cell
+  // row. Accept ≤3 cells so both delivery modes are handled. Card items always
+  // have 5 cells so they are never mistaken for header rows.
+  let headingSet = false;
+
+  rows.forEach((row) => {
     const cells = [...row.children];
     const hasLink = !!row.querySelector('a');
 
-    // The first link-less row (1-2 plain text cells) is the section header.
-    if (index === 0 && !hasLink && cells.length <= 2) {
-      const heading = (cells[0]?.textContent || '').trim();
-      const intro = (cells[1]?.textContent || '').trim();
-      if (heading) {
-        const h = document.createElement('h2');
-        h.className = 'xcel-feature-cards-heading';
-        h.textContent = heading;
-        header.append(h);
+    if (!hasLink && cells.length <= 3 && grid.childElementCount === 0) {
+      const cellText = (cells[0]?.textContent || '').trim();
+
+      // When AEM delivers all 3 container fields in one row, variant is cells[2].
+      // When xwalk delivers each field as its own row, variant is cells[0].
+      const variantCell = (cells[2]?.textContent || '').trim();
+      if (variantCell === 'media-object') block.classList.add('media-object');
+
+      if (cellText === 'cards' || cellText === 'media-object') {
+        if (cellText === 'media-object') block.classList.add('media-object');
+        return;
       }
-      if (intro) {
+
+      if (!headingSet) {
+        if (cellText) {
+          const h = document.createElement('h2');
+          h.className = 'xcel-feature-cards-heading';
+          h.textContent = cellText;
+          header.append(h);
+          headingSet = true;
+        }
+        const intro = (cells[1]?.textContent || '').trim();
+        if (intro) {
+          const p = document.createElement('p');
+          p.className = 'xcel-feature-cards-intro';
+          p.textContent = intro;
+          header.append(p);
+        }
+      } else if (cellText) {
         const p = document.createElement('p');
         p.className = 'xcel-feature-cards-intro';
-        p.textContent = intro;
+        p.textContent = cellText;
         header.append(p);
       }
       return;
     }
 
-    grid.append(decorateCard(row));
+    const isIconCard = row.dataset.aueModel === 'xcel-feature-card-icon'
+      || block.classList.contains('media-object');
+    grid.append(decorateCard(row, isIconCard));
   });
 
   if (header.childElementCount) block.append(header);

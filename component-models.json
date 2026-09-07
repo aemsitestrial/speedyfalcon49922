@@ -6137,6 +6137,23 @@
         "label": "Intro Text",
         "valueType": "string",
         "value": ""
+      },
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Card Layout",
+        "valueType": "string",
+        "value": "cards",
+        "options": [
+          {
+            "name": "Cards (Photo Top)",
+            "value": "cards"
+          },
+          {
+            "name": "Media Object (Icon Left)",
+            "value": "media-object"
+          }
+        ]
       }
     ]
   },
@@ -6170,6 +6187,53 @@
         "label": "Card Heading",
         "valueType": "string",
         "value": "Residential Customers"
+      },
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Card Image",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "xcel-feature-card-icon",
+    "fields": [
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Label",
+        "valueType": "string",
+        "value": "Learn More"
+      },
+      {
+        "component": "text",
+        "name": "ctaLink",
+        "label": "CTA Link URL",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "value": "<p>Describe this feature.</p>"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Card Heading",
+        "valueType": "string",
+        "value": "Card Title"
+      },
+      {
+        "component": "reference",
+        "name": "icon",
+        "label": "Icon Image",
+        "valueType": "string",
+        "value": ""
       }
     ]
   },
@@ -6289,13 +6353,6 @@
         "name": "backgroundImage",
         "label": "Background Image",
         "multi": false
-      },
-      {
-        "component": "text",
-        "name": "backgroundImageAlt",
-        "label": "Background Image Alt Text",
-        "valueType": "string",
-        "value": ""
       },
       {
         "component": "text",

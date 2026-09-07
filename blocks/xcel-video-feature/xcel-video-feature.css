@@ -10,6 +10,15 @@
   font-family: Arial, sans-serif;
 }
 
+.xcel-video-feature-heading::before {
+  content: "•••";
+  display: block;
+  color: #c8102e;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 8px;
+}
+
 .xcel-video-feature-heading {
   margin: 0 0 12px;
   color: #1a1a2e;
@@ -28,16 +37,26 @@
 }
 
 .xcel-video-feature-cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin-top: 8px;
   color: #8b1a2c;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.xcel-video-feature-cta::after {
+  content: "→";
   text-decoration: none;
 }
 
 .xcel-video-feature-cta:hover,
 .xcel-video-feature-cta:focus {
-  text-decoration: underline;
+  opacity: 0.8;
 }
 
 .xcel-video-feature-media {

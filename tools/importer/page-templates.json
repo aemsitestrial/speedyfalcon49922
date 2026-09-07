@@ -6,22 +6,47 @@
     {
       "name": "xcel-home",
       "urls": [
-        "https://www.xcelenergy.com"
+        "https://co.my.xcelenergy.com/s/"
       ],
-      "representativeUrl": "https://www.xcelenergy.com",
+      "representativeUrl": "https://co.my.xcelenergy.com/s/",
       "coverageGaps": [],
-      "description": "Xcel Energy homepage (state-selector landing). Sections: header/utility nav, state selector (8 service areas), Contact Customer Service CTA banner, and 5-column footer with copyright and social links.",
+      "description": "Xcel Energy Colorado homepage (behind the state-selector gate). Sections top-to-bottom: hero, quick-links, promo (teaser), feature-cards x3, video-feature, promo hero (teaser), and the contact CTA banner.",
       "blocks": [
         {
-          "name": "state-selector",
+          "name": "xcel-hero",
           "instances": [
-            "#xeg-main .ui-widget:nth-of-type(1)"
+            "c-xeg-hero-v2:has(section[data-blade-theme=\"dark\"])"
+          ]
+        },
+        {
+          "name": "xcel-quick-links",
+          "instances": [
+            "c-xeg-multi-action-banner"
+          ]
+        },
+        {
+          "name": "xcel-feature-cards",
+          "instances": [
+            "c-xeg-featured-content-v2"
+          ]
+        },
+        {
+          "name": "xcel-video-feature",
+          "instances": [
+            "c-dc-video-component-v2"
+          ]
+        },
+        {
+          "name": "teaser",
+          "instances": [
+            "c-xeg-two-column-v2",
+            "c-xeg-hero-v2:has(section[data-blade-theme=\"light\"])"
           ]
         },
         {
           "name": "xcel-cta-banner",
           "instances": [
-            "#xeg-main .ui-widget:nth-of-type(2)"
+            "c-xeg-contact-support"
           ]
         },
         {
@@ -29,44 +54,6 @@
           "instances": [
             "c-xeg-site-footer"
           ]
-        }
-      ],
-      "sections": [
-        {
-          "id": "rc2",
-          "name": "State Selector",
-          "selector": [
-            "#xeg-main .ui-widget:nth-of-type(1)"
-          ],
-          "style": null,
-          "blocks": [
-            "state-selector"
-          ],
-          "defaultContent": []
-        },
-        {
-          "id": "rc3",
-          "name": "Contact Customer Service CTA",
-          "selector": [
-            "#xeg-main .ui-widget:nth-of-type(2)"
-          ],
-          "style": null,
-          "blocks": [
-            "xcel-cta-banner"
-          ],
-          "defaultContent": []
-        },
-        {
-          "id": "rc4",
-          "name": "Footer",
-          "selector": [
-            "c-xeg-site-footer"
-          ],
-          "style": null,
-          "blocks": [
-            "xcel-footer"
-          ],
-          "defaultContent": []
         }
       ]
     }

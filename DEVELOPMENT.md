@@ -1,7 +1,8 @@
-# Development Conventions — speedyfalcon49922
+# Development Conventions — keeneagle93325
 
-This file documents the project-specific rules that all code (human or AI-generated) must follow.
-Read this before writing or editing any block code.
+> **Before starting any task — read both files:**
+> 1. **This file** (`DEVELOPMENT.md`) — all coding rules, CSS/ESLint/JCR/design spec
+> 2. **`SKILLS-GUIDE.md`** — what skills and agents are available and when to use them
 
 ---
 
@@ -9,7 +10,7 @@ Read this before writing or editing any block code.
 
 - **Type:** AEM Edge Delivery Services (EDS) — Universal Editor (crosswalk/xwalk) project
 - **Brand:** Xcel Energy
-- **Working branch:** `dev` → PR → `main`
+- **Working branch:** feature branch → PR → `main`
 
 ### Xcel Energy Brand Colors
 | Token | Hex | Usage |
@@ -50,7 +51,7 @@ dedicated pages, and every page on the site loads the same fragment unless told 
 
 ---
 
-## CSS Rules (stylelint enforced — all 3 fail CI if violated)
+## CSS Rules (stylelint enforced — all fail CI if violated)
 
 ### Rule 1 — Modern color syntax
 ```css
@@ -133,11 +134,156 @@ Alternative: use content-type detection in JS (detect a link by `/` or `http` pr
 
 ---
 
-## ESLint Rules (airbnb-base)
+## ESLint Rules (airbnb-base — all fail CI if violated)
 
-- Max 100 chars per line
+### Rule 1 — No `for...of` loops
+```js
+// WRONG
+for (const item of items) { ... }
+
+// RIGHT
+items.forEach((item) => { ... });
+```
+
+### Rule 2 — No `continue` statement
+```js
+// WRONG
+items.forEach((item) => {
+  if (!item) continue;  // banned
+  doSomething(item);
+});
+
+// RIGHT
+items.forEach((item) => {
+  if (item) doSomething(item);
+});
+```
+
+### Rule 3 — No unused variables
+```js
+// WRONG
+const iconImg = picture.querySelector('img');  // declared but never read again
+
+// RIGHT — remove it, or use it
+picture.querySelector('img').alt = altText;
+```
+
+### Rule 4 — Max line length (100 chars)
 - `ignoreStrings: true` and `ignoreTemplateLiterals: true` — string/template lines not checked
 - Lines with no strings/templates still get checked — break long `.find()` / `.map()` callbacks to multi-line
+
+---
+
+## Xcel Site Design Spec (extracted from xcelenergy.com screenshots)
+
+All block code must match these patterns. EMA: apply these before writing any CSS.
+
+---
+
+### Universal Patterns — Apply to EVERY block
+
+#### 1. Red dots decorator above section headings
+Every section heading has 3 small red dots (`•••`) above it.
+```css
+.my-block-heading::before {
+  content: "•••";
+  display: block;
+  color: #c8102e;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 8px;
+}
+```
+Blocks that need this: `xcel-feature-cards`, `xcel-video-feature`, `teaser`.
+
+#### 2. CTA link style — ALL CAPS + arrow
+Every CTA link is ALL CAPS with a `→` arrow and a bottom underline. No filled button background.
+```css
+.my-block-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b1a2c;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+.my-block-cta::after {
+  content: "→";
+  text-decoration: none;
+}
+```
+Blocks that need this: `xcel-feature-cards`, `xcel-video-feature`, `teaser`.
+
+#### 3. Section heading typography
+```css
+.my-block-heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin: 0 0 16px;
+}
+```
+
+---
+
+### Block-by-Block Design Spec
+
+#### xcel-hero
+- **Height:** ~60vh minimum
+- **Red accent bar** above heading — short horizontal red line (~32px wide, 4px tall):
+```css
+.xcel-hero-heading::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 4px;
+  background-color: #c8102e;
+  margin-bottom: 16px;
+}
+```
+- Heading: white, bold, large (2 lines on desktop)
+- Subheading: white, smaller, below heading
+
+#### xcel-quick-links
+- **Full-width dark crimson band** (`#8b1a2c`)
+- **"Welcome! Get Started Here"** heading in white, bold, centered
+- **4 white outlined buttons** in a row — white border, white text, transparent bg, fills on hover
+- **NO icons** — text-only buttons
+
+#### xcel-feature-cards (Affordable Energy / Cleaner Energy — 2–3 cards)
+- Red `•••` dots above section heading
+- Each card: **photo on top**, then card body below
+- **Red left vertical bar** on card title — `border-left: 3px solid #c8102e`
+- Card title: bold, dark, ~1.25rem
+- ALL CAPS CTA with → arrow at bottom
+
+#### xcel-feature-cards (Personalized Energy — 4 cards / media-object variant)
+- Red `•••` dots above section heading
+- Each card: cream icon square LEFT (~80px), text RIGHT
+- 2×2 grid on desktop
+- ALL CAPS CTA with →
+
+#### teaser (Convenient Energy / Safer Energy)
+- Two-column: **image LEFT** (~35% width), **text RIGHT**
+- White background, red `•••` dots above heading
+- ALL CAPS CTA with →
+
+#### teaser (Sustainable Energy)
+- Two-column: **text LEFT**, **large illustration RIGHT**
+- **Cream background** (`#f5ede8`) on the entire section
+
+#### xcel-video-feature (Local Energy)
+- Two-column: **text LEFT**, **video RIGHT**
+- Red `•••` dots above heading, ALL CAPS CTA with →
+
+#### xcel-cta-banner (Contact Customer Service)
+- Dark crimson background `#8b1a2c`
+- **White left vertical bar** — `border-left: 4px solid #fff` on the text container
+- Button: white outlined (`border: 2px solid #fff`, transparent bg, fills on hover)
 
 ---
 

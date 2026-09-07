@@ -1,0 +1,16 @@
+{
+  "data": {
+    "serviceAreaList": {
+      "items": [
+        { "name": "Colorado", "link": "/" },
+        { "name": "Michigan", "link": "/" },
+        { "name": "Minnesota", "link": "/" },
+        { "name": "New Mexico", "link": "/" },
+        { "name": "North Dakota", "link": "/" },
+        { "name": "South Dakota", "link": "/" },
+        { "name": "Texas", "link": "/" },
+        { "name": "Wisconsin", "link": "/" }
+      ]
+    }
+  }
+}
